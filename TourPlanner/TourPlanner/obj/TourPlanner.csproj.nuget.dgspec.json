@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FH-Technikum\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
+    "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
   },
   "projects": {
-    "D:\\FH-Technikum\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
+    "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FH-Technikum\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "projectUniqueName": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
         "projectName": "TourPlanner",
-        "projectPath": "D:\\FH-Technikum\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "projectPath": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
         "packagesPath": "C:\\Users\\amoln\\.nuget\\packages\\",
-        "outputPath": "D:\\FH-Technikum\\4.Semester\\SWEN2\\TourPlanner\\TourPlanner\\obj\\",
+        "outputPath": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
