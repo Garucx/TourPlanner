@@ -1,25 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
+    "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {}
   },
   "projects": {
-    "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
+    "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "projectUniqueName": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
         "projectName": "TourPlanner",
-        "projectPath": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
-        "packagesPath": "C:\\Users\\amoln\\.nuget\\packages\\",
-        "outputPath": "D:\\FH-Technikum\\4.Semester\\Github\\SWEN\\TourPlanner\\TourPlanner\\TourPlanner\\obj\\",
+        "projectPath": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+        "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\amoln\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
