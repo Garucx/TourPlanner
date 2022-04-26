@@ -29,21 +29,21 @@ namespace TourPlanner.Model
             Time = time;
             Route_information = route_information;
         }
-        public string Name { get => _Name; set => SetField(ref _Name, value); }
+        public string Name { get =>_Name; set => SetField(ref _Name, value); }
         private string _Name;
-        string Tour_desc { get => _Tour_desc; set => SetField(ref _Tour_desc, value); }
+        public string Tour_desc { get => _Tour_desc; set => SetField(ref _Tour_desc, value); }
         private string _Tour_desc;
-        string From { get => _From; set => SetField(ref _From, value); }
+        public string From { get => _From; set => SetField(ref _From, value); }
         private string _From;
-        string To { get => _To; set => SetField(ref _To, value); }
+        public string To { get => _To; set => SetField(ref _To, value); }
         private string _To;
-        string Transport_type { get => _Transport_type; set => SetField(ref _Transport_type, value); }
+        public string Transport_type { get => _Transport_type; set => SetField(ref _Transport_type, value); }
         private string _Transport_type;
-        float Distance { get => _Distance; set => SetField(ref _Distance, value); }
+        public float Distance { get => _Distance; set => SetField(ref _Distance, value); }
         private float _Distance;
-        int Time { get => _Time; set => SetField(ref _Time, value); }
+        public int Time { get => _Time; set => SetField(ref _Time, value); }
         private int _Time;
-        BitmapImage Route_information { get => _Route_information; set => SetField(ref _Route_information, value); }
+        public BitmapImage Route_information { get => _Route_information; set => SetField(ref _Route_information, value); }
         private BitmapImage _Route_information;
 
 

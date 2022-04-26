@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\TourPlanner",
+    "\\TourPlanner\\TourPlanner",
+    "\\TourPlanner\\TourPlanner\\View"
   ],
-  "SelectedNode": "\\C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner",
+  "SelectedNode": "\\TourPlanner\\TourPlanner\\View\\MainWindow.xaml",
   "PreviewInSolutionExplorer": false
 }
