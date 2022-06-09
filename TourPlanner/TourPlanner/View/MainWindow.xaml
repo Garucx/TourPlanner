@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Tour Planner" Height="500" Width="1000" MinWidth="400" MinHeight ="400" >
 
-    <Grid>
+    <Grid Loaded="Grid_Loaded">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>

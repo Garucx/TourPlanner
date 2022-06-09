@@ -18,7 +18,7 @@ namespace TourPlanner.Model
         }
 
 
-        public Tour(string name, string tour_desc, string from, string to, string transport_type, float distance, int time, BitmapImage route_information)
+        public Tour(string name, string tour_desc, string from, string to, string transport_type, float distance, int time, BitmapImage route_information,string image_link)
         {
             Name = name;
             Tour_desc = tour_desc;
@@ -28,6 +28,7 @@ namespace TourPlanner.Model
             Distance = distance;
             Time = time;
             Route_information = route_information;
+            Image_link = image_link;
         }
         public string Name { get =>_Name; set => SetField(ref _Name, value); }
         private string _Name;
@@ -45,6 +46,9 @@ namespace TourPlanner.Model
         private int _Time;
         public BitmapImage Route_information { get => _Route_information; set => SetField(ref _Route_information, value); }
         private BitmapImage _Route_information;
+
+        public string Image_link { get => _Image_link; set => SetField(ref _Image_link, value); }
+        private string _Image_link;
 
 
 

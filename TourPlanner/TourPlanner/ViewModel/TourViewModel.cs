@@ -16,9 +16,9 @@ namespace TourPlanner.ViewModel
 
 
             // Test data
-            _Tour.Add(new Tour("Test1", "Some Desc 1", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage()));
-            _Tour.Add(new Tour("Test2", "Some Desc 2", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage()));
-            _Tour.Add(new Tour("Test3", "Some Desc 3", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage()));
+            _Tour.Add(new Tour("Test1", "Some Desc 1", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
+            _Tour.Add(new Tour("Test2", "Some Desc 2", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
+            _Tour.Add(new Tour("Test3", "Some Desc 3", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
             
         }
 
