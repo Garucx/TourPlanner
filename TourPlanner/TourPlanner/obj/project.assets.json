@@ -527,19 +527,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\amoln\\.nuget\\packages\\": {}
+    "C:\\Users\\Nemanja\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\FH\\Sem_4\\Github\\Swen\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+      "projectUniqueName": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
       "projectName": "TourPlanner",
-      "projectPath": "E:\\FH\\Sem_4\\Github\\Swen\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
-      "packagesPath": "C:\\Users\\amoln\\.nuget\\packages\\",
-      "outputPath": "E:\\FH\\Sem_4\\Github\\Swen\\TourPlanner\\TourPlanner\\TourPlanner\\obj\\",
+      "projectPath": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\TourPlanner.csproj",
+      "packagesPath": "C:\\Users\\Nemanja\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Nemanja\\Source\\Repos\\TourPlanner\\TourPlanner\\TourPlanner\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\amoln\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Nemanja\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -584,20 +584,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
@@ -606,7 +592,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
