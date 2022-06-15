@@ -22,6 +22,59 @@ namespace TourPlanner.Model
             command = new NpgsqlCommand();
             command.Connection = connection;
         }
+
+        public void Modify_Tour(int id, Tour tour)
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+                lock (protection)
+                {
+                    command.CommandText = "update tours set name = (@name), description = (@description),tour_from= (@tour_from),transport_type =(@transport_type),distance =(@distance),time = (@time),route_information = (@route_information),tour_to =(@tour_to) where id = (@id)";
+                    command.Parameters.AddWithValue("name", tour.Name);
+                    command.Parameters.AddWithValue("description", tour.Tour_desc);
+                    command.Parameters.AddWithValue("tour_from", tour.From);
+                    command.Parameters.AddWithValue("transport_type", tour.Transport_type);
+                    command.Parameters.AddWithValue("time", tour.Time);
+                    command.Parameters.AddWithValue("route_information", tour.Image_link);
+                    command.Parameters.AddWithValue("distance", tour.Distance);
+                    command.Parameters.AddWithValue("tour_to", tour.To);
+                    command.Parameters.AddWithValue("id", id);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+
+                }
+            }
+            else
+                error();
+
+        }
+
+        public void Modify_Tour_Log(int id, TourLog tourLog)
+        {
+            if (connection.State == System.Data.ConnectionState.Open)
+            {
+                lock (protection)
+                {
+                    command.CommandText = "update tour_logs set tour_id = (@tour_id), date_time = (@date_time),tour_comment = (@tour_comment),difficulty =(@difficulty),total_time = (@total_time),rating =(@rating) where id = (@id)";
+                    command.Parameters.AddWithValue("tour_id", tourLog.idfromtour);
+                    command.Parameters.AddWithValue("date_time", tourLog.date_time);
+                    command.Parameters.AddWithValue("tour_comment", tourLog.Comment);
+                    command.Parameters.AddWithValue("difficulty", tourLog.difficulty);
+                    command.Parameters.AddWithValue("total_time", tourLog.total_time);
+                    command.Parameters.AddWithValue("rating", tourLog.rating);
+                    command.Parameters.AddWithValue("id", id);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+
+                }
+            }
+            else
+                error();
+
+        }
+
         public int Get_ID_From_log(TourLog tour)
         {
             int id = 0;
