@@ -22,29 +22,103 @@ namespace TourPlanner.Model
             command = new NpgsqlCommand();
             command.Connection = connection;
         }
+        public int Get_ID_From_log(TourLog tour)
+        {
+            int id = 0;
+            lock (protection)
+            {
+                command.CommandText = "select id from tour_logs where tour_id=(@tour_id) and difficulty=(@dif) and total_time =(@time);";
+                command.Parameters.AddWithValue("tour_id", tour.idfromtour);
+                command.Parameters.AddWithValue("dif", tour.difficulty);
+                command.Parameters.AddWithValue("time", tour.total_time);
+                command.Prepare();
+                using (NpgsqlDataReader dataReader = command.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        if (dataReader[0] != null)
+                        {
+                            id = (int)dataReader[0];
+                        }
+                        else
+                        {
+                            throw new Exception("Der angegebene Tour wird in der Datenbank nicht gefunden");
+                        }
+                    }
+                }
+                command.Parameters.Clear();
+            }
+            return id;
+        }
+        public void Delete_Tour(int id)
+        {
+            Task.Run(() =>
+            {
+                lock (protection)
+                {
+                    command.CommandText = "delete from tour_logs where tour_id= (@id);";
+                    command.Parameters.AddWithValue("id", id);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+
+                    command.CommandText = "delete from tours where id= (@id);";
+                    command.Parameters.AddWithValue("id", id);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
+            });
+        }
+
+        public int Get_ID_From_Tour(Tour tour)
+        {
+            int id = 0;
+            lock (protection)
+            {
+                command.CommandText = "select id from tours where name=(@name) and tour_from=(@from) and tour_to =(@to);";
+                command.Parameters.AddWithValue("name", tour.Name);
+                command.Parameters.AddWithValue("from", tour.From);
+                command.Parameters.AddWithValue("to", tour.To);
+                command.Prepare();
+                using (NpgsqlDataReader dataReader = command.ExecuteReader())
+                {
+                    while (dataReader.Read())
+                    {
+                        if (dataReader[0] != null)
+                        {
+                            id = (int)dataReader[0];
+                        }
+                        else
+                        {
+                            throw new Exception("Der angegebene Tour wird in der Datenbank nicht gefunden");
+                        }
+                    }
+                }
+                command.Parameters.Clear();
+            }
+            return id;
+        }
 
         public void Create_new_Tour(Tour newtour)
         {
             if (connection.State == System.Data.ConnectionState.Open)
             {
-                Task.Run(() =>
+                lock (protection)
                 {
-                    lock (protection)
-                    {
-                        command.CommandText = "insert into tours(name,description,tour_from,transport_type,distance,time,route_information,tour_to) values ((@name),(@description),(@tour_from),(@transport_type),(@distance),(@time),(@route_information),(@tour_to))";
-                        command.Parameters.AddWithValue("name", newtour.Name);
-                        command.Parameters.AddWithValue("description", newtour.Tour_desc);
-                        command.Parameters.AddWithValue("tour_from", newtour.From);
-                        command.Parameters.AddWithValue("transport_type", newtour.Transport_type);
-                        command.Parameters.AddWithValue("time", newtour.Time);
-                        command.Parameters.AddWithValue("route_information", newtour.Image_link);
-                        command.Parameters.AddWithValue("distance", newtour.Distance);
-                        command.Parameters.AddWithValue("tour_to", newtour.To);
-                        command.Prepare();
-                        command.ExecuteNonQuery();
-                        command.Parameters.Clear();
-                    }
-                });
+                    command.CommandText = "insert into tours(name,description,tour_from,transport_type,distance,time,route_information,tour_to) values ((@name),(@description),(@tour_from),(@transport_type),(@distance),(@time),(@route_information),(@tour_to))";
+                    command.Parameters.AddWithValue("name", newtour.Name);
+                    command.Parameters.AddWithValue("description", newtour.Tour_desc);
+                    command.Parameters.AddWithValue("tour_from", newtour.From);
+                    command.Parameters.AddWithValue("transport_type", newtour.Transport_type);
+                    command.Parameters.AddWithValue("time", newtour.Time);
+                    command.Parameters.AddWithValue("route_information", newtour.Image_link);
+                    command.Parameters.AddWithValue("distance", newtour.Distance);
+                    command.Parameters.AddWithValue("tour_to", newtour.To);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
             }
             else
             {

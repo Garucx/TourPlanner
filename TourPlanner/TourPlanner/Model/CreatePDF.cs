@@ -91,10 +91,5 @@ namespace TourPlanner.Model
             document.Close();
         }
 
-        
-
-
-
-
     }
 }

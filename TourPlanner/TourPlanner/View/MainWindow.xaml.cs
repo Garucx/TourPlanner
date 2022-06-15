@@ -31,8 +31,6 @@ namespace TourPlanner.View
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             // Testen 
-            Model.CreatePDF a = new Model.CreatePDF("./");
-            a.CreateTourPDF("hello",1,false);
 
 
         }
