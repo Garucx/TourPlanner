@@ -31,11 +31,8 @@ namespace TourPlanner.View
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
             // Testen 
-            Model.database test = new Model.database();
-            Model.Tour a = new Model.Tour("Test1", "Some Desc 1", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test");
-            test.Create_new_Tour(a);
-            Model.TourLog b = new Model.TourLog(1, DateTime.Now, "asdasd", 3, 4, 4);
-            test.Create_Tour_Log(b);
+            Model.CreatePDF a = new Model.CreatePDF("./");
+            a.CreateTourPDF("hello",1,false);
 
 
         }
