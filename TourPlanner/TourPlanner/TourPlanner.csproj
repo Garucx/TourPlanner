@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="itext7" Version="7.2.2" />
     <PackageReference Include="Npgsql" Version="6.0.4" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />

@@ -1,10 +1,11 @@
 {
   "ExpandedNodes": [
     "",
+    "\\Datenbank",
     "\\TourPlanner",
     "\\TourPlanner\\TourPlanner",
     "\\TourPlanner\\TourPlanner\\View"
   ],
-  "SelectedNode": "\\TourPlanner\\TourPlanner\\View\\MainWindow.xaml",
+  "SelectedNode": "\\TourPlanner\\TourPlanner\\View\\MainWindow.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

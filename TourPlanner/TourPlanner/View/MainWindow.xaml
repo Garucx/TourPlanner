@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Text="Search bar"></TextBox>
-        <Button Command="" Grid.Column="3" Grid.Row="1" Content="Search"></Button>
+        <Button Command="" Grid.Column="4" Grid.Row="1" Content="Search"></Button>
 
 
 
@@ -97,7 +97,7 @@
         <DockPanel Height="22" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New" />
+                    <MenuItem Header="_New" Command="{Binding AddNewTour}"/>
                     <MenuItem Header="_Open" />
                     <MenuItem Header="_Save" />
                     <Separator />
