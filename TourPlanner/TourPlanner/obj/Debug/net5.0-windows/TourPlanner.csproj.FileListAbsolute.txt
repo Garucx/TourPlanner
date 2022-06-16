@@ -145,3 +145,10 @@ C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Deb
 C:\Users\Nemanja\source\repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\AddTourDialog.g.cs
 C:\Users\Nemanja\source\repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlanner_MarkupCompile.lref
 C:\Users\Nemanja\source\repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\AddTourDialog.baml
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\TestShowImage.g.cs
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\TestShowImage.baml
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll

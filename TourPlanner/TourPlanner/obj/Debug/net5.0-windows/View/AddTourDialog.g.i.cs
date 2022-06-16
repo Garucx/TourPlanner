@@ -125,7 +125,7 @@ namespace TourPlanner.View {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/TourPlanner;V1.0.0.0;component/view/addtourdialog.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/TourPlanner;component/view/addtourdialog.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\View\AddTourDialog.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);
