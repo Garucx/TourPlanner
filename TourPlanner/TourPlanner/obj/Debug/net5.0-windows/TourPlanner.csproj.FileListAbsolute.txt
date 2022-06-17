@@ -164,3 +164,5 @@ E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-win
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\TestShowImage.baml
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\log4net.dll
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Configs\log4net.config
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\DeleteWPF.g.cs
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\DeleteWPF.baml

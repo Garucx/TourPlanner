@@ -5,9 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.Commands;
 using TourPlanner.Model;
+using TourPlanner.View;
 
 namespace TourPlanner.ViewModel
 {
@@ -17,13 +19,14 @@ namespace TourPlanner.ViewModel
         public  TourViewModel()
         {
             // TODO: Get Saved Tours if they exist and initialize _Tour
-
             database connection = new database();
             _Tour = connection.GetAll();
-
+            Log.LogInfo("Refreshing the GUI");
+            connection.CloseConnection();
             // Test data
             AddNewTour = new AddNewTourCommand(this);
             Exit = new ExitApplicationCommand(this);
+            DeleteWindow = new DeleteWindowCommand(this);
         }
 
         #region Create new tour
@@ -59,19 +62,37 @@ namespace TourPlanner.ViewModel
         #endregion
 
 
+
+
+        #region Delete
+        public ICommand DeleteWindow { get; set; }
+
+        public bool CanOpenDeleteWindow { get; set; } = true;
+
+        internal async Task OpenDeleteWindow()
+        {
+           DeleteWPF viewModel = new DeleteWPF();
+           viewModel.ShowDialog();
+        }
+        #endregion
+
+        #region IDK
         IDialogService _dialogService = new DialogService();
+
         private List<Tour> _Tour = new List<Tour>();
+        
         public Tour SelectedTour
         {
             get;
             set;
         }
+
         public IEnumerable<Tour> Tour
         {
             get { return _Tour; }
         }
+        #endregion
 
 
-       
     }
 }

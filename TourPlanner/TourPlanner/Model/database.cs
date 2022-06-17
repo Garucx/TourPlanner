@@ -129,16 +129,16 @@ namespace TourPlanner.Model
             });
         }
 
-        public int Get_ID_From_Tour(Tour tour)
+        public int Get_ID_From_Tour(string name,string from,string to)
         {
-            Log.LogInfo("Geetting ID From Tour");
+            Log.LogInfo("Getting ID From Tour");
             int id = 0;
             lock (protection)
             {
                 command.CommandText = "select id from tours where name=(@name) and tour_from=(@from) and tour_to =(@to);";
-                command.Parameters.AddWithValue("name", tour.Name);
-                command.Parameters.AddWithValue("from", tour.From);
-                command.Parameters.AddWithValue("to", tour.To);
+                command.Parameters.AddWithValue("name", name);
+                command.Parameters.AddWithValue("from", from);
+                command.Parameters.AddWithValue("to", to);
                 command.Prepare();
                 using (NpgsqlDataReader dataReader = command.ExecuteReader())
                 {
@@ -150,7 +150,7 @@ namespace TourPlanner.Model
                         }
                         else
                         {
-                            throw new Exception("Der angegebene Tour wird in der Datenbank nicht gefunden");
+                            return id;
                         }
                     }
                 }

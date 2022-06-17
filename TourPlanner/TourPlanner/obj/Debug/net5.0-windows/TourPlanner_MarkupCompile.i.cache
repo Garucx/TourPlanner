@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\App.xaml
-31504147331
+4350737974
 
-20-170623745
+24-1637313203
 217-1986577792
-View\AddTourDialog.xaml;View\MainWindow.xaml;View\TestShowImage.xaml;
+View\AddTourDialog.xaml;View\DeleteWPF.xaml;View\MainWindow.xaml;View\TestShowImage.xaml;
 
-False
+True
 
