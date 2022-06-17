@@ -1,2 +1,13 @@
 2022-06-17 16:19:27,748 [1] ERROR TourPlanner.Model.Log - Apasdasding
 2022-06-17 16:21:10,561 [1] ERROR TourPlanner.Model.Log - nice
+2022-06-17 16:52:19,535 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 16:52:32,086 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 16:57:12,064 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 16:57:14,226 [1] INFO TourPlanner.Model.Log - yes
+2022-06-17 16:58:56,401 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 16:58:58,578 [1] INFO TourPlanner.Model.Log - Shutsown
+2022-06-17 16:59:19,782 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 16:59:21,556 [1] INFO TourPlanner.Model.Log - Shutsown
+2022-06-17 17:02:33,191 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 17:26:07,441 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-17 17:26:07,666 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database

@@ -14,19 +14,19 @@ namespace TourPlanner.ViewModel
     internal class TourViewModel
     {
         
-        public TourViewModel()
+        public  TourViewModel()
         {
             // TODO: Get Saved Tours if they exist and initialize _Tour
 
-            database a = new database();
-            // Test data
-            _Tour.Add(new Tour("Test1", "Some Desc 1", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
-            _Tour.Add(new Tour("Test2", "Some Desc 2", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
-            _Tour.Add(new Tour("Test3", "Some Desc 3", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
-            AddNewTour = new AddNewTourCommand(this);
+            database connection = new database();
+            _Tour = connection.GetAll();
 
+            // Test data
+            AddNewTour = new AddNewTourCommand(this);
+            Exit = new ExitApplicationCommand(this);
         }
 
+        #region Create new tour
         internal async Task CreateNewTour()
         {
             var res = _dialogService.ShowDialog(result =>
@@ -38,15 +38,28 @@ namespace TourPlanner.ViewModel
             // Neue Route inserten 
             // Log erstellen?
         }
-
-        IDialogService _dialogService = new DialogService();
+        public bool CanAdd { get; internal set; } = true;
 
         public ICommand AddNewTour
         {
             get;
             private set;
         }
+        #endregion
+        #region Exit
+        public ICommand Exit { get; private set; }
+        public bool CanExit { get; internal set; } = true;
 
+        internal async Task ExitApplication()
+        {
+            Log.LogInfo("Shutsown");
+            CanExit = false;
+            System.Windows.Application.Current.Shutdown();
+        }
+        #endregion
+
+
+        IDialogService _dialogService = new DialogService();
         private List<Tour> _Tour = new List<Tour>();
         public Tour SelectedTour
         {
@@ -58,11 +71,7 @@ namespace TourPlanner.ViewModel
             get { return _Tour; }
         }
 
-        public bool CanAdd { get; internal set; } = true;
 
-        public void SaveChanges()
-        {
-            // TODO: Save Tour information / changes
-        }
+       
     }
 }

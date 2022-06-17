@@ -26,7 +26,7 @@ namespace TourPlanner.Model
 
         public void Modify_Tour(int id, Tour tour)
         {
-            Log.LogInfo("Modifying Tour "+tour.Name);
+            Log.LogInfo("Modifying Tour " + tour.Name);
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
@@ -109,7 +109,7 @@ namespace TourPlanner.Model
         }
         public void Delete_Tour(int id)
         {
-            Log.LogInfo("Deleting Tour with Id: "+ id.ToString());
+            Log.LogInfo("Deleting Tour with Id: " + id.ToString());
             Task.Run(() =>
             {
                 lock (protection)
@@ -161,7 +161,7 @@ namespace TourPlanner.Model
 
         public void Create_new_Tour(Tour newtour)
         {
-            Log.LogInfo("Creating new Tour: "+newtour.Name);
+            Log.LogInfo("Creating new Tour: " + newtour.Name);
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
@@ -224,7 +224,7 @@ namespace TourPlanner.Model
 
         public async Task<Tour> GetTourAsync(int id)
         {
-            Log.LogInfo("Getting Tour with ID: "+ id.ToString());
+            Log.LogInfo("Getting Tour with ID: " + id.ToString());
             Tour tour = null;
             command.CommandText = "select * from tours where id = (@id);";
             command.Parameters.AddWithValue("id", id);
@@ -251,6 +251,29 @@ namespace TourPlanner.Model
             if (tour == null) throw new Exception("Der gesuchte Tour exestiert nicht");
             return tour;
         }
+
+        public List<Tour> GetAll()
+        {
+            List<Tour> alltours = new List<Tour>();
+            Log.LogInfo("Requesting every log in the Database");
+
+            command.CommandText = "select * from tours;";
+            command.Prepare();
+            using (NpgsqlDataReader dataReader = command.ExecuteReader())
+            {
+                while (dataReader.Read())
+                {
+                    if (dataReader[0] != null)
+                    {
+                        alltours.Add(new Tour((string)dataReader[1], (string)dataReader[2], (string)dataReader[3], (string)dataReader[8], (string)dataReader[4], Convert.ToSingle((decimal)dataReader[5]), (int)dataReader[6], (string)dataReader[7]));
+                    }
+                }
+            }
+
+            return alltours;
+        }
+
+
 
         public void CloseConnection()
         {
