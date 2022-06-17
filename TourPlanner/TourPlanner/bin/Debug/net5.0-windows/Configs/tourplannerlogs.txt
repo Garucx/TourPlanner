@@ -1,0 +1,1 @@
+2022-06-17 16:17:13,548 [1] ERROR TourPlanner.Model.Log - Apasdasding

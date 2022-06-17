@@ -18,7 +18,7 @@ namespace TourPlanner.ViewModel
         {
             // TODO: Get Saved Tours if they exist and initialize _Tour
 
-
+            database a = new database();
             // Test data
             _Tour.Add(new Tour("Test1", "Some Desc 1", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
             _Tour.Add(new Tour("Test2", "Some Desc 2", "Test", "Test", "Test", 10f, 10, new System.Windows.Media.Imaging.BitmapImage(), "https:test"));
@@ -33,7 +33,7 @@ namespace TourPlanner.ViewModel
             {
                 var test = result;
             });
-            
+
             var route = await MapQuestRequestHandler.GetRouteAsync(res.start, res.dest);
             // Neue Route inserten 
             // Log erstellen?

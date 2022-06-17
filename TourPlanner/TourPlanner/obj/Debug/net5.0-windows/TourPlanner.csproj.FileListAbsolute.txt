@@ -152,3 +152,15 @@ C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Deb
 C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
 C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
 C:\Users\Nemanja\Source\Repos\Garucx\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Microsoft.Win32.SystemEvents.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\AddTourDialog.g.cs
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\TestShowImage.g.cs
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlanner_MarkupCompile.lref
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\AddTourDialog.baml
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\View\TestShowImage.baml
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\log4net.dll
+E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Configs\log4net.config

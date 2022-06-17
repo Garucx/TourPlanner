@@ -17,6 +17,7 @@ namespace TourPlanner.Model
         object protection = new object();
         public database()
         {
+            Log.LogInfo("Opening up new Database Connection");
             connection = new NpgsqlConnection(myConnectionString);
             connection.Open();
             command = new NpgsqlCommand();
@@ -25,6 +26,7 @@ namespace TourPlanner.Model
 
         public void Modify_Tour(int id, Tour tour)
         {
+            Log.LogInfo("Modifying Tour "+tour.Name);
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
@@ -52,6 +54,7 @@ namespace TourPlanner.Model
 
         public void Modify_Tour_Log(int id, TourLog tourLog)
         {
+            Log.LogInfo("Modifying Tour Log " + id.ToString());
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
@@ -77,6 +80,7 @@ namespace TourPlanner.Model
 
         public int Get_ID_From_log(TourLog tour)
         {
+            Log.LogInfo("Getting ID from Tour Log");
             int id = 0;
             lock (protection)
             {
@@ -105,6 +109,7 @@ namespace TourPlanner.Model
         }
         public void Delete_Tour(int id)
         {
+            Log.LogInfo("Deleting Tour with Id: "+ id.ToString());
             Task.Run(() =>
             {
                 lock (protection)
@@ -126,6 +131,7 @@ namespace TourPlanner.Model
 
         public int Get_ID_From_Tour(Tour tour)
         {
+            Log.LogInfo("Geetting ID From Tour");
             int id = 0;
             lock (protection)
             {
@@ -155,6 +161,7 @@ namespace TourPlanner.Model
 
         public void Create_new_Tour(Tour newtour)
         {
+            Log.LogInfo("Creating new Tour: "+newtour.Name);
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
@@ -180,12 +187,14 @@ namespace TourPlanner.Model
 
         }
 
-        public void error()
+        private void error()
         {
+            Log.LogError("Connection mit der Datenbank ist geschlossen");
             throw new Exception("Connection mit der Datenbank ist geschlossen");
         }
         public void Create_Tour_Log(TourLog tourLog)
         {
+            Log.LogInfo("Creating new TourLog");
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 Task.Run(() =>
@@ -215,6 +224,7 @@ namespace TourPlanner.Model
 
         public async Task<Tour> GetTourAsync(int id)
         {
+            Log.LogInfo("Getting Tour with ID: "+ id.ToString());
             Tour tour = null;
             command.CommandText = "select * from tours where id = (@id);";
             command.Parameters.AddWithValue("id", id);
@@ -244,6 +254,7 @@ namespace TourPlanner.Model
 
         public void CloseConnection()
         {
+            Log.LogInfo("Database Connection schließt");
             connection.Close();
         }
 
