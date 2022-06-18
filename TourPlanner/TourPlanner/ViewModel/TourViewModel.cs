@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -28,6 +29,12 @@ namespace TourPlanner.ViewModel
             Exit = new ExitApplicationCommand(this);
             DeleteWindow = new DeleteWindowCommand(this);
             ModifyWindow = new ModifyWindowCommand(this);
+            RefreshWindow = new RefreshCommand(this);
+            Tour = new ObservableCollection<Tour>();
+            foreach (var item in _Tour)
+            {
+                Tour.Add(item);
+            }
         }
 
         #region Create new tour
@@ -51,10 +58,9 @@ namespace TourPlanner.ViewModel
             Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
             database connection = new database();
             connection.Create_new_Tour(tour);
+            Tour.Add(tour);
             _Tour.Add(tour);
             connection.CloseConnection();
-            // Neue Route inserten 
-            // Log erstellen?
         }
         public bool CanAdd { get; internal set; } = true;
 
@@ -98,21 +104,44 @@ namespace TourPlanner.ViewModel
            viewModel.ShowDialog();
         }
         #endregion
+        #region Refresh
+        public ICommand RefreshWindow { get; set; }
+        public bool CanRefresh { get; set; } = true;
+        
+        public async Task Refresh()
+        {
+            database connection = new database();
+            _Tour = connection.GetAll();
+            Tour.Clear();
+            foreach (var item in _Tour)
+            {
+                Tour.Add(item);
+            }    
+            connection.CloseConnection();
+        }
+
+
+        #endregion
         #region IDK
         IDialogService _dialogService = new DialogService();
 
         private List<Tour> _Tour = new List<Tour>();
+
         
+
         public Tour SelectedTour
         {
             get;
             set;
         }
 
+        public ObservableCollection<Tour> Tour { get; private set; }
+         /*
         public IEnumerable<Tour> Tour
         {
             get { return _Tour; }
         }
+            */
         #endregion
+        }
     }
-}

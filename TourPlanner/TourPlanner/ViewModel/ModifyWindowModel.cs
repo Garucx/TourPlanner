@@ -89,7 +89,9 @@ namespace TourPlanner.ViewModel
                 ModifingTour.Name = $"{start_add}TO{dest_add}";
                 connection.Modify_Tour(id,ModifingTour);
                 Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
+                find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
                 connection.CloseConnection();
+                ModifingTour = null;
             }
 
         }

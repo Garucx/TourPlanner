@@ -20,7 +20,7 @@ namespace TourPlanner.ViewModel
         public string name { get => _name; set => SetField(ref _name, value); }
         private string _name ="";
         public string error { get => _error; set => SetField(ref _error, value); }
-        private string _error = "aa";
+        private string _error = "";
 
         #region Button
         public ICommand delete { get; set; }

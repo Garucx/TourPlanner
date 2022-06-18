@@ -110,23 +110,19 @@ namespace TourPlanner.Model
         public void Delete_Tour(int id)
         {
             Log.LogInfo("Deleting Tour with Id: " + id.ToString());
-            Task.Run(() =>
-            {
-                lock (protection)
-                {
-                    command.CommandText = "delete from tour_logs where tour_id= (@id);";
-                    command.Parameters.AddWithValue("id", id);
-                    command.Prepare();
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
 
-                    command.CommandText = "delete from tours where id= (@id);";
-                    command.Parameters.AddWithValue("id", id);
-                    command.Prepare();
-                    command.ExecuteNonQuery();
-                    command.Parameters.Clear();
-                }
-            });
+            command.CommandText = "delete from tour_logs where tour_id= (@id);";
+            command.Parameters.AddWithValue("id", id);
+            command.Prepare();
+            command.ExecuteNonQuery();
+            command.Parameters.Clear();
+
+            command.CommandText = "delete from tours where id= (@id);";
+            command.Parameters.AddWithValue("id", id);
+            command.Prepare();
+            command.ExecuteNonQuery();
+            command.Parameters.Clear();
+
         }
 
         public int Get_ID_From_Tour(string name)

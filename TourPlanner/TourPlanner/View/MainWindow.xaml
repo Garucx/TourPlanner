@@ -25,8 +25,8 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Text="Search bar"></TextBox>
-        <Button Command="" Grid.Column="4" Grid.Row="1" Content="Search"></Button>
+        <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding tb_search}"></TextBox>
+        <Button Command="{Binding Search}" Grid.Column="4" Grid.Row="1" Content="Search"></Button>
 
 
 
@@ -90,11 +90,6 @@
 
 
 
-
-
-
-
-
         <DockPanel Height="22" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
@@ -109,6 +104,7 @@
                     <MenuItem Header="_Modify" Command="{Binding ModifyWindow}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Options">
+                    <MenuItem Header="_Refresh" Command="{Binding RefreshWindow}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Help">
                 </MenuItem>
