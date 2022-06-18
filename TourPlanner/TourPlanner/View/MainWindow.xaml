@@ -93,15 +93,16 @@
         <DockPanel Height="22" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="6">
             <Menu DockPanel.Dock="Top">
                 <MenuItem Header="_File">
-                    <MenuItem Header="_New" Command="{Binding AddNewTour}"/>
+                    <MenuItem Header="_New Tour" Command="{Binding AddNewTour}"/>
+                    <MenuItem Header="_New Tour Log" Command="{Binding addtourlog}"></MenuItem>
                     <MenuItem Header="_Open" />
                     <MenuItem Header="_Save" />
                     <Separator />
                     <MenuItem Header="_Exit" Command="{Binding Exit}"/>
                 </MenuItem>
                 <MenuItem Header="_Edit">
-                    <MenuItem Header="_Delete" Command="{Binding DeleteWindow}"></MenuItem>
-                    <MenuItem Header="_Modify" Command="{Binding ModifyWindow}"></MenuItem>
+                    <MenuItem Header="_Delete Tour" Command="{Binding DeleteWindow}"></MenuItem>
+                    <MenuItem Header="_Modify Tour" Command="{Binding ModifyWindow}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Options">
                     <MenuItem Header="_Refresh" Command="{Binding RefreshWindow}"></MenuItem>

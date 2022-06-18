@@ -30,6 +30,7 @@ namespace TourPlanner.ViewModel
             DeleteWindow = new DeleteWindowCommand(this);
             ModifyWindow = new ModifyWindowCommand(this);
             RefreshWindow = new RefreshCommand(this);
+            addtourlog = new AddTourLogWindowCommand(this);
             Tour = new ObservableCollection<Tour>();
             foreach (var item in _Tour)
             {
@@ -122,6 +123,20 @@ namespace TourPlanner.ViewModel
 
 
         #endregion
+        #region Add Tour Log
+        public ICommand addtourlog { get; set; }
+        public bool CanCreateTourLog { get; set; } = true;
+
+        public async Task CreateTourLog()
+        {
+            Log.LogInfo("Opening Window for Add Tour Logs");
+            AddTourLogWindow window = new AddTourLogWindow();
+            window.ShowDialog();
+
+        }
+        #endregion
+
+
         #region IDK
         IDialogService _dialogService = new DialogService();
 
