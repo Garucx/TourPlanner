@@ -39,6 +39,20 @@ namespace TourPlanner.ViewModel
             });
 
             var route = await MapQuestRequestHandler.GetRouteAsync(res.start, res.dest);
+            Tour tour = new Tour();
+            tour.Distance = route.route.route.distance;
+            tour.Time = route.route.route.time;
+            tour.Tour_desc = $"From {res.start.Address} {res.start.AreaCode} {res.start.City} to {res.dest.Address} {res.dest.AreaCode} {res.dest.City}";
+            tour.Transport_type = route.route.route.options.routeType;
+            tour.From = res.start.Address;
+            tour.To = res.dest.Address;
+            tour.Image_link = "asdas00";
+            tour.Name = $"{res.start.Address}TO{res.dest.Address}";
+            Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
+            database connection = new database();
+            connection.Create_new_Tour(tour);
+            _Tour.Add(tour);
+            connection.CloseConnection();
             // Neue Route inserten 
             // Log erstellen?
         }

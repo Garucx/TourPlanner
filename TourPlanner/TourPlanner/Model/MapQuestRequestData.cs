@@ -8,10 +8,10 @@ namespace TourPlanner.Model
 {
     internal class MapQuestRequestData
     {
-        string AreaCode { get; set; }
-        string Address { get; set; }
-        string City { get; set; }
-        string State { get; set; }
+        public string AreaCode { get; set; }
+        public string Address { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
 
         public MapQuestRequestData(string areaCode, string address, string city, string state)
         {

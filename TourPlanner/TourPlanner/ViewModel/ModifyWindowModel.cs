@@ -5,7 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
+using System.Windows.Media.Imaging;
 using TourPlanner.Commands;
 using TourPlanner.Model;
 
@@ -64,7 +67,7 @@ namespace TourPlanner.ViewModel
 
         public async Task ModifynowAsync()
         {
-            if(ModifingTour == null)
+            if (ModifingTour == null)
             {
                 Log.LogError("Not possible to Modify a tour that doen't exist");
                 find = "Didn't select Tour";
@@ -72,9 +75,21 @@ namespace TourPlanner.ViewModel
             }
             else
             {
+                Log.LogInfo($"Tour mit name: {ModifingTour.Name} wird geupdatet");
 
-
-
+                var test = await MapQuestRequestHandler.GetRouteAsync(new MapQuestRequestData(start_code, start_add, start_city, start_country), new MapQuestRequestData(dest_code, dest_add, dest_city, dest_country));
+                database connection = new database();
+                int id = connection.Get_ID_From_Tour(ModifingTour.Name);
+                ModifingTour.Distance = test.route.route.distance;
+                ModifingTour.Time = test.route.route.time;
+                ModifingTour.Tour_desc = $"From {start_add} {start_code} {start_city} to {dest_add} {dest_code} {dest_city}";
+                ModifingTour.Transport_type = test.route.route.options.routeType;
+                ModifingTour.From = start_add;
+                ModifingTour.To = dest_add;
+                ModifingTour.Name = $"{start_add}TO{dest_add}";
+                connection.Modify_Tour(id,ModifingTour);
+                Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
+                connection.CloseConnection();
             }
 
         }
@@ -96,7 +111,7 @@ namespace TourPlanner.ViewModel
                 else
                 {
                     ModifingTour = await connection.GetTourAsync(id);
-                    if(ModifingTour != null)
+                    if (ModifingTour != null)
                     {
                         find = $"Tour with name: {name} exists. You can Modify it now";
                         Canmodify = true;
