@@ -19,12 +19,8 @@ namespace TourPlanner.ViewModel
         }
         public string name { get => _name; set => SetField(ref _name, value); }
         private string _name ="";
-        public string from { get => _from; set => SetField(ref _from, value); }
-        private string _from = "";
-        public string to { get => _to; set => SetField(ref _to, value); }
-        private string _to = "";
         public string error { get => _error; set => SetField(ref _error, value); }
-        private string _error = "";
+        private string _error = "aa";
 
         #region Button
         public ICommand delete { get; set; }
@@ -33,11 +29,10 @@ namespace TourPlanner.ViewModel
 
         public void DelteTour()
         {
+            database connection = new database();
             try
             {
-                database connection = new database();
-
-                int id = connection.Get_ID_From_Tour(name, from, to);
+                int id = connection.Get_ID_From_Tour(name);
                 if (id == 0) error = "Tour does not exist";
                 else
                 {
@@ -47,6 +42,10 @@ namespace TourPlanner.ViewModel
             }catch (Exception ex)
             {
                 error = ex.Message;
+            }
+            finally
+            {
+                connection.CloseConnection();
             }
 
         }

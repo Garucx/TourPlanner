@@ -106,6 +106,7 @@
                 </MenuItem>
                 <MenuItem Header="_Edit">
                     <MenuItem Header="_Delete" Command="{Binding DeleteWindow}"></MenuItem>
+                    <MenuItem Header="_Modify" Command="{Binding ModifyWindow}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Options">
                 </MenuItem>

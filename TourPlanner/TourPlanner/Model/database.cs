@@ -129,16 +129,14 @@ namespace TourPlanner.Model
             });
         }
 
-        public int Get_ID_From_Tour(string name,string from,string to)
+        public int Get_ID_From_Tour(string name)
         {
             Log.LogInfo("Getting ID From Tour");
             int id = 0;
             lock (protection)
             {
-                command.CommandText = "select id from tours where name=(@name) and tour_from=(@from) and tour_to =(@to);";
+                command.CommandText = "select id from tours where name=(@name);";
                 command.Parameters.AddWithValue("name", name);
-                command.Parameters.AddWithValue("from", from);
-                command.Parameters.AddWithValue("to", to);
                 command.Prepare();
                 using (NpgsqlDataReader dataReader = command.ExecuteReader())
                 {

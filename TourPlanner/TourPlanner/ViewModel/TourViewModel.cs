@@ -27,6 +27,7 @@ namespace TourPlanner.ViewModel
             AddNewTour = new AddNewTourCommand(this);
             Exit = new ExitApplicationCommand(this);
             DeleteWindow = new DeleteWindowCommand(this);
+            ModifyWindow = new ModifyWindowCommand(this);
         }
 
         #region Create new tour
@@ -60,10 +61,18 @@ namespace TourPlanner.ViewModel
             System.Windows.Application.Current.Shutdown();
         }
         #endregion
+        #region Modify
+        public ICommand ModifyWindow { get; set; }
+        public bool CanOpenModifyWindow { get; set; } = true;
 
+        internal async Task OpenModifyWindow()
+        {
+            Log.LogInfo("Opening Modify Window");
+            ModifyWPF viewModel = new ModifyWPF();
+            viewModel.ShowDialog();
+        }
 
-
-
+        #endregion
         #region Delete
         public ICommand DeleteWindow { get; set; }
 
@@ -71,11 +80,10 @@ namespace TourPlanner.ViewModel
 
         internal async Task OpenDeleteWindow()
         {
-           DeleteWPF viewModel = new DeleteWPF();
+            DeleteWPF viewModel = new DeleteWPF();
            viewModel.ShowDialog();
         }
         #endregion
-
         #region IDK
         IDialogService _dialogService = new DialogService();
 
@@ -92,7 +100,5 @@ namespace TourPlanner.ViewModel
             get { return _Tour; }
         }
         #endregion
-
-
     }
 }
