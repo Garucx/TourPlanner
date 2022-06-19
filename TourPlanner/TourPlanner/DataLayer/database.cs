@@ -54,21 +54,20 @@ namespace TourPlanner.DataLayer
 
         }
 
-        public void Modify_Tour_Log(int id, TourLog tourLog)
+        public void Modify_Tour_Log(TourLog tourLog)
         {
-            Log.LogInfo("Modifying Tour Log " + id.ToString());
+            Log.LogInfo("Modifying Tour Log " + tourLog.tourLogId.ToString());
             if (connection.State == System.Data.ConnectionState.Open)
             {
                 lock (protection)
                 {
-                    command.CommandText = "update tour_logs set tour_id = (@tour_id), date_time = (@date_time),tour_comment = (@tour_comment),difficulty =(@difficulty),total_time = (@total_time),rating =(@rating) where id = (@id)";
-                    command.Parameters.AddWithValue("tour_id", tourLog.idfromtour);
+                    command.CommandText = "update tour_logs set  date_time = (@date_time),tour_comment = (@tour_comment),difficulty =(@difficulty),total_time = (@total_time),rating =(@rating) where id = (@id)";
                     command.Parameters.AddWithValue("date_time", tourLog.date_time);
                     command.Parameters.AddWithValue("tour_comment", tourLog.Comment);
                     command.Parameters.AddWithValue("difficulty", tourLog.difficulty);
                     command.Parameters.AddWithValue("total_time", tourLog.total_time);
                     command.Parameters.AddWithValue("rating", tourLog.rating);
-                    command.Parameters.AddWithValue("id", id);
+                    command.Parameters.AddWithValue("id", tourLog.tourLogId);
                     command.Prepare();
                     command.ExecuteNonQuery();
                     command.Parameters.Clear();
@@ -286,6 +285,20 @@ namespace TourPlanner.DataLayer
             }
 
             return alltours;
+        }
+
+
+        public void Delte_Tour_Log(int id)
+        {
+            lock (protection)
+            {
+                command.CommandText = "delete from tour_logs where id= (@id);";
+                command.Parameters.AddWithValue("id", id);
+                command.Prepare();
+                command.ExecuteNonQuery();
+                command.Parameters.Clear();
+            }
+
         }
 
 

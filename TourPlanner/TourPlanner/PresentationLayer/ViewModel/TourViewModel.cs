@@ -16,7 +16,10 @@ using TourPlanner.Commands;
 using TourPlanner.DataLayer;
 using TourPlanner.Model;
 using TourPlanner.PresentationLayer.Commands;
+using TourPlanner.PresentationLayer.Commands.ModifyTourLog;
 using TourPlanner.PresentationLayer.DialogServices;
+using TourPlanner.PresentationLayer.View;
+using TourPlanner.PresentationLayer.ViewModel;
 using TourPlanner.View;
 
 namespace TourPlanner.ViewModel
@@ -40,6 +43,8 @@ namespace TourPlanner.ViewModel
             AllTours = new ObservableCollection<Tour>();
             TextSearch = new FullTextSearchCommand(this);
             CreatePdf = new CreatePDFCommand(this);
+            DeleteTourLog = new DeleteTourLogCommand(this);
+            ModifyTourLog = new ModifyTourLogWindowCommand(this);
             foreach (var item in Tour.ToList())
             {
                 item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
@@ -97,15 +102,7 @@ namespace TourPlanner.ViewModel
             connection.CloseConnection();
         }
 
-        private ObservableCollection<Tour> _Tour = new ObservableCollection<Tour>();
-        public ObservableCollection<Tour> Tour
-        {
-            get
-            {
-                return _Tour;
-            }
-        }
-        public ObservableCollection<Tour> AllTours { get; private set; }
+        
         public bool CanAdd { get; internal set; } = true;
 
         public ICommand AddNewTour
@@ -218,9 +215,64 @@ namespace TourPlanner.ViewModel
         }
 
         #endregion
+        #region Delte Tour LOg
+        public ICommand DeleteTourLog { get; set; }
+
+        public async Task DeleteLog()
+        {
+            try
+            {
+                if (SelectedTourLog == null)
+                {
+                    throw new ArgumentNullException("Please select a Tour log");
+                }
+                database connection = new database();
+                connection.Delte_Tour_Log(SelectedTourLog.tourLogId);
+                SelectedTour.TourLogs.Remove(SelectedTourLog);
+                connection.CloseConnection();
+
+            }catch (ArgumentNullException ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+        }
 
 
+        #endregion
+        #region Modify Tour Log
+        public ICommand ModifyTourLog { get; set; }
+
+        public async void ModifyLog()
+        {
+            try
+            {
+                if (SelectedTourLog == null)
+                {
+                    throw new ArgumentNullException("No Log Selected");
+                }
+                ModifyTourLogWindow window = new ModifyTourLogWindow();
+                window.DataContext = new ModifyTourLogViewModel(SelectedTourLog);
+                window.ShowDialog();
+
+            }catch (ArgumentNullException ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
         #region IDK
+
+        private ObservableCollection<Tour> _Tour = new ObservableCollection<Tour>();
+        public ObservableCollection<Tour> Tour
+        {
+            get
+            {
+                return _Tour;
+            }
+        }
+        public ObservableCollection<Tour> AllTours { get; private set; }
         IDialogService _dialogService = new DialogService();
 
 
@@ -231,7 +283,11 @@ namespace TourPlanner.ViewModel
             get;
             set;
         }
-
+        public TourLog SelectedTourLog
+        {
+            get;
+            set;
+        }
         public string SearchText { get; set; }
 
 

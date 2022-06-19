@@ -83,7 +83,7 @@
                 <TextBlock Text="{Binding SelectedTour.Route_information}" Grid.Row="1" Grid.Column="15"></TextBlock>
             </Grid>
         </StackPanel>
-        <DataGrid Name="dg_tourlogs" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5" ItemsSource="{Binding SelectedTour.TourLogs}">
+        <DataGrid Name="dg_tourlogs" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5"  ItemsSource="{Binding SelectedTour.TourLogs, Mode=OneWay}" SelectedItem="{Binding SelectedTourLog, Mode=TwoWay}">
 
         </DataGrid>
 
@@ -103,6 +103,8 @@
                 <MenuItem Header="_Edit">
                     <MenuItem Header="_Delete Tour" Command="{Binding DeleteWindow}"></MenuItem>
                     <MenuItem Header="_Modify Tour" Command="{Binding ModifyWindow}"></MenuItem>
+                    <MenuItem Header="_Delete Tour Log" Command="{Binding DeleteTourLog}"></MenuItem>
+                    <MenuItem Header="_Modify Tour Log" Command="{Binding ModifyTourLog}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Options">
                     <MenuItem Header="_Refresh" Command="{Binding RefreshWindow}"></MenuItem>
