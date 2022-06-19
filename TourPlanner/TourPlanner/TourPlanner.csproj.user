@@ -7,33 +7,33 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="View\AddTourDialog.xaml.cs">
+    <Compile Update="PresentationLayer\View\AddTourDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\AddTourLogWindow.xaml.cs">
+    <Compile Update="PresentationLayer\View\AddTourLogWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\ModifyWPF.xaml.cs">
+    <Compile Update="PresentationLayer\View\ModifyWPF.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\TestShowImage.xaml.cs">
+    <Compile Update="PresentationLayer\View\TestShowImage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="View\AddTourDialog.xaml">
+    <Page Update="PresentationLayer\View\AddTourDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\AddTourLogWindow.xaml">
+    <Page Update="PresentationLayer\View\AddTourLogWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\MainWindow.xaml">
+    <Page Update="PresentationLayer\View\MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\ModifyWPF.xaml">
+    <Page Update="PresentationLayer\View\ModifyWPF.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="View\TestShowImage.xaml">
+    <Page Update="PresentationLayer\View\TestShowImage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

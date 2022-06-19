@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\
+C:\Users\Nemanja\source\repos\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\
 TourPlanner
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlanner\App.xaml
-51847490368
+C:\Users\Nemanja\source\repos\TourPlanner\TourPlanner\TourPlanner\App.xaml
+5518714296
 
-29-1729277128
+31-417571237
 217-1052305072
-View\AddTourDialog.xaml;View\AddTourLogWindow.xaml;View\MainWindow.xaml;View\ModifyWPF.xaml;View\TestShowImage.xaml;
+PresentationLayer\View\AddTourDialog.xaml;PresentationLayer\View\AddTourLogWindow.xaml;PresentationLayer\View\MainWindow.xaml;PresentationLayer\View\ModifyWPF.xaml;PresentationLayer\View\TestShowImage.xaml;
 
 False
 
