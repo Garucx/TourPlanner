@@ -216,3 +216,5 @@ E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-win
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\PresentationLayer\View\TestShowImage.baml
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\PresentationLayer\View\ModifyTourLogWindow.g.cs
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\PresentationLayer\View\ModifyTourLogWindow.baml
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\PresentationLayer\View\ModifyTourLogWindow.g.cs
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\PresentationLayer\View\ModifyTourLogWindow.baml

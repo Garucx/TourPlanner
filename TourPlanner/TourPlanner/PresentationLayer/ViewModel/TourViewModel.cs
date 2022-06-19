@@ -29,29 +29,41 @@ namespace TourPlanner.ViewModel
 
         public TourViewModel()
         {
-            // TODO: Get Saved Tours if they exist and initialize _Tour
-            database connection = new database();
-            _Tour = new ObservableCollection<Tour>(connection.GetAll());
-            Log.LogInfo("Refreshing the GUI");
-            // Test data
-            AddNewTour = new AddNewTourCommand(this);
-            Exit = new ExitApplicationCommand(this);
-            ModifyWindow = new ModifyWindowCommand(this);
-            RefreshWindow = new RefreshCommand(this);
-            addtourlog = new AddTourLogWindowCommand(this);
-            DeleteWindow = new DeleteTourCommand(this);
-            AllTours = new ObservableCollection<Tour>();
-            TextSearch = new FullTextSearchCommand(this);
-            CreatePdf = new CreatePDFCommand(this);
-            DeleteTourLog = new DeleteTourLogCommand(this);
-            ModifyTourLog = new ModifyTourLogWindowCommand(this);
-            foreach (var item in Tour.ToList())
+            try
             {
-                item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
-                AllTours.Add(item);
+                database connection = new database();
+                _Tour = new ObservableCollection<Tour>(connection.GetAll());
+                Log.LogInfo("Refreshing the GUI");
+                // Test data
+                AddNewTour = new AddNewTourCommand(this);
+                Exit = new ExitApplicationCommand(this);
+                ModifyWindow = new ModifyWindowCommand(this);
+                RefreshWindow = new RefreshCommand(this);
+                addtourlog = new AddTourLogWindowCommand(this);
+                DeleteWindow = new DeleteTourCommand(this);
+                AllTours = new ObservableCollection<Tour>();
+                TextSearch = new FullTextSearchCommand(this);
+                CreatePdf = new CreatePDFCommand(this);
+                DeleteTourLog = new DeleteTourLogCommand(this);
+                ModifyTourLog = new ModifyTourLogWindowCommand(this);
+                foreach (var item in Tour.ToList())
+                {
+                    item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
+                    AllTours.Add(item);
+                }
+                connection.CloseConnection();
             }
-            connection.CloseConnection();
-
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
         }
 
         #region textsearch
@@ -59,50 +71,81 @@ namespace TourPlanner.ViewModel
         public ICommand TextSearch { get; private set; }
         internal async Task FullTextSearch()
         {
-            await Task.Delay(1);
-            if (string.IsNullOrWhiteSpace(SearchText))
-                _Tour = AllTours;
-            else
+            try
             {
-                _Tour.Clear();
-                foreach (var item in AllTours)
+                await Task.Delay(1);
+                if (string.IsNullOrWhiteSpace(SearchText))
+                    _Tour = AllTours;
+                else
                 {
-                    if (item.Name.Contains(SearchText))
-                        _Tour.Add(item);
+                    _Tour.Clear();
+                    foreach (var item in AllTours)
+                    {
+                        if (item.Name.Contains(SearchText))
+                            _Tour.Add(item);
+                    }
                 }
             }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
         }
         #endregion
         #region Create new tour
         internal async Task CreateNewTour()
         {
-            var res = _dialogService.ShowDialog(result =>
+            try
             {
-                var test = result;
-            });
-            var route = await MapQuestRequestHandler.GetRouteAsync(res.start, res.dest);
-            Tour tour = new Tour();
-            tour.Distance = route.route.route.distance;
-            tour.Time = route.route.route.time;
-            tour.Tour_desc = $"From {res.start.Address} {res.start.AreaCode} {res.start.City} to {res.dest.Address} {res.dest.AreaCode} {res.dest.City}";
-            tour.Transport_type = route.route.route.options.routeType;
-            tour.From = res.start.Address;
-            tour.To = res.dest.Address;
-            tour.Image_link = "asdas00"; // Muss geändert werden
-            tour.Name = $"{res.start.Address}TO{res.dest.Address}";
-            Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
-            database connection = new database();
-            connection.Create_new_Tour(tour);
-            int id = connection.Get_ID_From_Tour(tour.Name);
-            tour.ID = id;
-            Tour.Add(tour);
-            _Tour.Add(tour);
-            AllTours.Add(tour);
-            route.image.Save("..\\..\\..\\PresentationLayer\\tour_images\\" + tour.ID.ToString() + ".png", ImageFormat.Png);
-            connection.CloseConnection();
+                var res = _dialogService.ShowDialog(result =>
+                {
+                    var test = result;
+                });
+                var route = await MapQuestRequestHandler.GetRouteAsync(res.start, res.dest);
+                Tour tour = new Tour();
+                tour.Distance = route.route.route.distance;
+                tour.Time = route.route.route.time;
+                tour.Tour_desc = $"From {res.start.Address} {res.start.AreaCode} {res.start.City} to {res.dest.Address} {res.dest.AreaCode} {res.dest.City}";
+                tour.Transport_type = route.route.route.options.routeType;
+                tour.From = res.start.Address;
+                tour.To = res.dest.Address;
+                tour.Image_link = "asdas00"; // Muss geändert werden
+                tour.Name = $"{res.start.Address}TO{res.dest.Address}";
+                Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
+                database connection = new database();
+                connection.Create_new_Tour(tour);
+                int id = connection.Get_ID_From_Tour(tour.Name);
+                tour.ID = id;
+                Tour.Add(tour);
+                _Tour.Add(tour);
+                AllTours.Add(tour);
+                route.image.Save("..\\..\\..\\PresentationLayer\\tour_images\\" + tour.ID.ToString() + ".png", ImageFormat.Png);
+                connection.CloseConnection();
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Log.LogError(ex.Message);
+            }
+
         }
 
-        
+
         public bool CanAdd { get; internal set; } = true;
 
         public ICommand AddNewTour
@@ -129,17 +172,32 @@ namespace TourPlanner.ViewModel
 
         internal async Task OpenModifyWindow()
         {
-            await Task.Delay(1);
-            Log.LogInfo("Opening Modify Window");
-            if(SelectedTour == null)
+            try
             {
-                Log.LogError("Kein Tour ausgewählt zum Überschreiben");
-                MessageBox.Show("Please select a Tour");
-                return;
+                await Task.Delay(1);
+                Log.LogInfo("Opening Modify Window");
+                if (SelectedTour == null)
+                {
+                    Log.LogError("Kein Tour ausgewählt zum Überschreiben");
+                    MessageBox.Show("Please select a Tour");
+                    return;
+                }
+                ModifyWPF viewModel = new ModifyWPF();
+                viewModel.DataContext = new ModifyWindowModel(SelectedTour);
+                viewModel.ShowDialog();
             }
-            ModifyWPF viewModel = new ModifyWPF();
-            viewModel.DataContext = new ModifyWindowModel(SelectedTour);
-            viewModel.ShowDialog();
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
         }
 
         #endregion
@@ -150,11 +208,26 @@ namespace TourPlanner.ViewModel
 
         internal async Task OpenDeleteWindow()
         {
-            await Task.Delay(1);
-            Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
-            database connection = new database();
-            connection.Delete_Tour(SelectedTour.ID);
-            _Tour.Remove(SelectedTour);
+            try
+            {
+                await Task.Delay(1);
+                Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
+                database connection = new database();
+                connection.Delete_Tour(SelectedTour.ID);
+                _Tour.Remove(SelectedTour);
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
         }
 
 
@@ -165,10 +238,25 @@ namespace TourPlanner.ViewModel
 
         public async Task Refresh()
         {
-            await Task.Delay(1);
-            database connection = new database();
-            _Tour = new ObservableCollection<Tour>(connection.GetAll());
-            connection.CloseConnection();
+            try
+            {
+                await Task.Delay(1);
+                database connection = new database();
+                _Tour = new ObservableCollection<Tour>(connection.GetAll());
+                connection.CloseConnection();
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
         }
 
 
@@ -179,17 +267,32 @@ namespace TourPlanner.ViewModel
 
         public async Task CreateTourLog()
         {
-            await Task.Delay(1);
-            if(SelectedTour == null)
+            try
             {
-                Log.LogError("Kein Tour ausgewählt zum Überschreiben");
-                MessageBox.Show("Please select a Tour");
-                return;
+                if (SelectedTour == null)
+                {
+                    Log.LogError("Kein Tour ausgewählt zum Überschreiben");
+                    MessageBox.Show("Please select a Tour");
+                    return;
+                }
+                Log.LogInfo("Opening Window for Add Tour Logs");
+                AddTourLogWindow window = new AddTourLogWindow();
+                window.DataContext = new AddTourLogViewModel(SelectedTour);
+                window.ShowDialog();
             }
-            Log.LogInfo("Opening Window for Add Tour Logs");
-            AddTourLogWindow window = new AddTourLogWindow();
-            window.DataContext = new AddTourLogViewModel(SelectedTour);
-            window.ShowDialog();
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+            await Task.Delay(1);
+
 
         }
         #endregion
@@ -206,12 +309,24 @@ namespace TourPlanner.ViewModel
                 }
                 CreatePDF pdfcreator = new CreatePDF("./");
                 pdfcreator.CreateTourPDF(SelectedTour.Name, SelectedTour, true);
-            }catch (ArgumentNullException ex)
+            }
+            catch (ArgumentNullException ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show(ex.Message);
             }
-            
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
         }
 
         #endregion
@@ -231,10 +346,22 @@ namespace TourPlanner.ViewModel
                 SelectedTour.TourLogs.Remove(SelectedTourLog);
                 connection.CloseConnection();
 
-            }catch (ArgumentNullException ex)
+            }
+            catch (ArgumentNullException ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show(ex.Message);
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
             }
         }
 
@@ -255,10 +382,22 @@ namespace TourPlanner.ViewModel
                 window.DataContext = new ModifyTourLogViewModel(SelectedTourLog);
                 window.ShowDialog();
 
-            }catch (ArgumentNullException ex)
+            }
+            catch (ArgumentNullException ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show(ex.Message);
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
             }
         }
         #endregion
