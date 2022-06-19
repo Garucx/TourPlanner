@@ -23,7 +23,6 @@ namespace TourPlanner.View
         public AddTourLogWindow()
         {
             InitializeComponent();
-            DataContext = new AddTourLogViewModel();
         }
     }
 }

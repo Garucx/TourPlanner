@@ -20,16 +20,14 @@ namespace TourPlanner.ViewModel
 {
     internal class ModifyWindowModel : INotifyPropertyChanged
     {
-        public ModifyWindowModel()
+        public ModifyWindowModel(Tour tour)
         {
             Modifynow = new ModifyTourCommand(this);
+            ModifingTour = tour;
         }
 
         private Tour ModifingTour;
-        internal int Id { get; set; }
         #region strings
-        public string name { get => _name; set => SetField(ref _name, value); }
-        private string _name = "";
 
         public string find { get => _find; set => SetField(ref _find, value); }
         private string _find = "";
@@ -69,36 +67,31 @@ namespace TourPlanner.ViewModel
 
         public async Task ModifynowAsync()
         {
-            Log.LogInfo("Searching after Tour: " + name);
             database connection = new database();
             try
             {
-                Id = connection.Get_ID_From_Tour(name);
-                if (Id == 0) Log.LogError($"Tour with name: {name} doesn't exist");
+                if(string.IsNullOrEmpty(start_code)|| string.IsNullOrEmpty(start_add)|| string.IsNullOrEmpty(start_city)|| string.IsNullOrWhiteSpace(start_country) ||string.IsNullOrEmpty(dest_code) || string.IsNullOrEmpty(dest_add) || string.IsNullOrEmpty(dest_city) || string.IsNullOrWhiteSpace(dest_country))
+                {
+                    Log.LogError("User hat nicht alle Boxen ausgefüllt");
+                    find = "Please enter something in every textbox";
+                }
                 else
                 {
-                    ModifingTour = await connection.GetTourAsync(Id);
-                    if (ModifingTour != null)
-                    {
-                        Log.LogInfo($"Tour mit name: {ModifingTour.Name} wird geupdatet");
+                    Log.LogInfo($"Tour mit name: {ModifingTour.Name} wird geupdatet");
 
-                        var test = await MapQuestRequestHandler.GetRouteAsync(new MapQuestRequestData(start_code, start_add, start_city, start_country), new MapQuestRequestData(dest_code, dest_add, dest_city, dest_country));
-                        ModifingTour.Distance = test.route.route.distance;
-                        ModifingTour.Time = test.route.route.time;
-                        ModifingTour.Tour_desc = $"From {start_add} {start_code} {start_city} to {dest_add} {dest_code} {dest_city}";
-                        ModifingTour.Transport_type = test.route.route.options.routeType;
-                        ModifingTour.From = start_add;
-                        ModifingTour.To = dest_add;
-                        ModifingTour.Name = $"{start_add}TO{dest_add}";
-                        connection.Modify_Tour(Id, ModifingTour);
-                        Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
-                        find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
-                        ModifingTour = null;
-
-
-                    }
+                    var test = await MapQuestRequestHandler.GetRouteAsync(new MapQuestRequestData(start_code, start_add, start_city, start_country), new MapQuestRequestData(dest_code, dest_add, dest_city, dest_country));
+                    ModifingTour.Distance = test.route.route.distance;
+                    ModifingTour.Time = test.route.route.time;
+                    ModifingTour.Tour_desc = $"From {start_add} {start_code} {start_city} to {dest_add} {dest_code} {dest_city}";
+                    ModifingTour.Transport_type = test.route.route.options.routeType;
+                    ModifingTour.From = start_add;
+                    ModifingTour.To = dest_add;
+                    ModifingTour.Name = $"{start_add}TO{dest_add}";
+                    connection.Modify_Tour(ModifingTour.ID, ModifingTour);
+                    Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
+                    find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -112,41 +105,7 @@ namespace TourPlanner.ViewModel
         }
 
         #endregion
-        #region searchbutton
 
-        public async Task SearchTour()
-        {
-
-            Log.LogInfo("Searching after Tour: " + name);
-            database connection = new database();
-            try
-            {
-                Id = connection.Get_ID_From_Tour(name);
-                if (Id == 0) Log.LogError($"Tour with name: {name} doesn't exist");
-                else
-                {
-                    ModifingTour = await connection.GetTourAsync(Id);
-                    if (ModifingTour != null)
-                    {
-                        find = $"Tour with name: {name} exists. You can Modify it now";
-                        Canmodify = true;
-                    }
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex.Message);
-            }
-            finally
-            {
-                connection.CloseConnection();
-            }
-
-
-        }
-
-        #endregion
         #region Property Changed
         public event PropertyChangedEventHandler? PropertyChanged;
 

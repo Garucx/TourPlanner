@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer.Logging;
 using TourPlanner.BusinessLayer.MapQuest;
+using TourPlanner.BusinessLayer.PDF;
 using TourPlanner.Commands;
 using TourPlanner.DataLayer;
 using TourPlanner.Model;
@@ -38,7 +39,7 @@ namespace TourPlanner.ViewModel
             DeleteWindow = new DeleteTourCommand(this);
             AllTours = new ObservableCollection<Tour>();
             TextSearch = new FullTextSearchCommand(this);
-
+            CreatePdf = new CreatePDFCommand(this);
             foreach (var item in Tour.ToList())
             {
                 item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
@@ -47,6 +48,8 @@ namespace TourPlanner.ViewModel
             connection.CloseConnection();
 
         }
+
+        #region textsearch
 
         public ICommand TextSearch { get; private set; }
         internal async Task FullTextSearch()
@@ -64,7 +67,7 @@ namespace TourPlanner.ViewModel
                 }
             }
         }
-
+        #endregion
         #region Create new tour
         internal async Task CreateNewTour()
         {
@@ -131,7 +134,14 @@ namespace TourPlanner.ViewModel
         {
             await Task.Delay(1);
             Log.LogInfo("Opening Modify Window");
+            if(SelectedTour == null)
+            {
+                Log.LogError("Kein Tour ausgewählt zum Überschreiben");
+                MessageBox.Show("Please select a Tour");
+                return;
+            }
             ModifyWPF viewModel = new ModifyWPF();
+            viewModel.DataContext = new ModifyWindowModel(SelectedTour);
             viewModel.ShowDialog();
         }
 
@@ -154,7 +164,7 @@ namespace TourPlanner.ViewModel
         #endregion
         #region Refresh
         public ICommand RefreshWindow { get; set; }
-        public bool CanRefresh { get; set; } = true;
+        public bool CanRefreshandCreatePDF { get; set; } = true;
 
         public async Task Refresh()
         {
@@ -173,11 +183,40 @@ namespace TourPlanner.ViewModel
         public async Task CreateTourLog()
         {
             await Task.Delay(1);
+            if(SelectedTour == null)
+            {
+                Log.LogError("Kein Tour ausgewählt zum Überschreiben");
+                MessageBox.Show("Please select a Tour");
+                return;
+            }
             Log.LogInfo("Opening Window for Add Tour Logs");
             AddTourLogWindow window = new AddTourLogWindow();
+            window.DataContext = new AddTourLogViewModel(SelectedTour);
             window.ShowDialog();
 
         }
+        #endregion
+        #region PDF
+        public ICommand CreatePdf { get; set; }
+
+        public async Task CreatePDF()
+        {
+            try
+            {
+                if (SelectedTour == null)
+                {
+                    throw new ArgumentNullException("Please select a Tour to create a PDF");
+                }
+                CreatePDF pdfcreator = new CreatePDF("./");
+                pdfcreator.CreateTourPDF(SelectedTour.Name, SelectedTour, true);
+            }catch (ArgumentNullException ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
         #endregion
 
 

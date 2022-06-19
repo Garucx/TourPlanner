@@ -31,8 +31,7 @@
             </Grid.RowDefinitions>
 
 
-            <Label Content = "Tour Name " HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
-            <TextBox HorizontalAlignment = "Left"  TextWrapping="Wrap" Grid.Row="2" Text="{Binding name}"  Grid.Column="1" VerticalAlignment="Center" Width="120"/>
+           
             <Label Content="Start" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold"/>
             <Label Content="Destination" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="3" VerticalAlignment="Top" FontWeight="Bold"/>
             <Label Content="Address" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top"/>
@@ -48,13 +47,13 @@
             <TextBox Text="{Binding start_city}" Grid.Row="7" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox Text="{Binding start_country}" Grid.Row="8" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox Text="{Binding dest_add}" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-            <TextBox Text="{Binding dest_Code}" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding dest_code}" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox Text="{Binding dest_city}" Grid.Row="7" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <TextBox Text="{Binding dest_country}" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Button Command="{Binding Modifynow}"  Content="Modfify" HorizontalAlignment="Left" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="430" />
             <Label Content = "{Binding find}" HorizontalAlignment="Left" Grid.ColumnSpan="4" Grid.Row="3" Grid.Column="1 " VerticalAlignment="Center"/>
-            <Label Content = "Tour Exits : " HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
-            <Label Content="Modify Tours" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" Grid.ColumnSpan="5" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+            <Label Content = "Message : " HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="Modify Tours" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="3" HorizontalAlignment="Center" Grid.ColumnSpan="5" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
         </Grid>
         
     </Grid>

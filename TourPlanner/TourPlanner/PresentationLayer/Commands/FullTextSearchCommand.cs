@@ -25,7 +25,7 @@ namespace TourPlanner.PresentationLayer.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return _viewModel.CanRefresh;
+            return _viewModel.CanRefreshandCreatePDF;
         }
 
         void ICommand.Execute(object? parameter)

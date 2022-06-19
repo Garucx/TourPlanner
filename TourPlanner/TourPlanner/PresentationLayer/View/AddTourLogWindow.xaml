@@ -32,18 +32,16 @@
                 <RowDefinition Height="0.5*"></RowDefinition>
             </Grid.RowDefinitions>
 
-            <Label Grid.Row="1" Grid.Column="0" Content="Tour Name" Margin="5,5,0,2.5"></Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}" Margin="0,5,5,2.5"></TextBox>
 
             <!--<TextBlock Padding="5,0,0,0"><Run FontSize="8">From</Run><LineBreak/><Run>Address</Run></TextBlock>-->
-            <Label Grid.Row="2" Grid.Column="0" Margin="5,5,0,2.5" Content="Date"></Label>
-            <DatePicker SelectedDate="{Binding selecteddate}" Grid.Row="2" Grid.Column="1" Text="{Binding selecteddate}" Margin="0,5,5,2.5"></DatePicker>
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,5,0,2.5" Content="Date"></Label>
+            <DatePicker SelectedDate="{Binding selecteddate}" Grid.Row="1" Grid.Column="1" Text="{Binding selecteddate}" Margin="0,5,5,2.5"></DatePicker>
 
-            <Label Grid.Row="3" Grid.Column="0" Margin="5,5,0,2.5" Content="Difficulty"></Label>
-            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding diff}" Margin="0,5,5,2.5"></TextBox>
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,5,0,2.5" Content="Difficulty"></Label>
+            <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding diff}" Margin="0,5,5,2.5"></TextBox>
 
-            <Label Grid.Row="4" Grid.Column="0" Margin="5,5,0,2.5" Content="Total Time"></Label>
-            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding total_time}" Margin="0,5,5,2.5"></TextBox>
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,5,0,2.5" Content="Total Time"></Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding total_time}" Margin="0,5,5,2.5"></TextBox>
 
         </Grid>
         <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1">

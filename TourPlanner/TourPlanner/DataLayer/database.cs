@@ -193,24 +193,22 @@ namespace TourPlanner.DataLayer
             Log.LogInfo("Creating new TourLog");
             if (connection.State == System.Data.ConnectionState.Open)
             {
-                Task.Run(() =>
+                lock (protection)
                 {
-                    lock (protection)
-                    {
-                        NpgsqlParameter date = new NpgsqlParameter("date_time", NpgsqlTypes.NpgsqlDbType.Timestamp);
-                        command.CommandText = "insert into tour_logs(tour_id,date_time,tour_comment,difficulty,total_time,rating) values ((@tour_id),(@date_time),(@tour_comment),(@difficulty),(@total_time),(@rating))";
-                        command.Parameters.AddWithValue("tour_id", tourLog.idfromtour);
-                        command.Parameters.AddWithValue("date_time", tourLog.date_time);
-                        command.Parameters.AddWithValue("tour_comment", tourLog.Comment);
-                        command.Parameters.AddWithValue("difficulty", tourLog.difficulty);
-                        command.Parameters.AddWithValue("total_time", tourLog.total_time);
-                        command.Parameters.AddWithValue("rating", tourLog.rating);
-                        command.Prepare();
-                        command.ExecuteNonQuery();
-                        command.Parameters.Clear();
-                    }
+                    NpgsqlParameter date = new NpgsqlParameter("date_time", NpgsqlTypes.NpgsqlDbType.Timestamp);
+                    command.CommandText = "insert into tour_logs(tour_id,date_time,tour_comment,difficulty,total_time,rating) values ((@tour_id),(@date_time),(@tour_comment),(@difficulty),(@total_time),(@rating))";
+                    command.Parameters.AddWithValue("tour_id", tourLog.idfromtour);
+                    command.Parameters.AddWithValue("date_time", tourLog.date_time);
+                    command.Parameters.AddWithValue("tour_comment", tourLog.Comment);
+                    command.Parameters.AddWithValue("difficulty", tourLog.difficulty);
+                    command.Parameters.AddWithValue("total_time", tourLog.total_time);
+                    command.Parameters.AddWithValue("rating", tourLog.rating);
+                    command.Prepare();
+                    command.ExecuteNonQuery();
+                    command.Parameters.Clear();
+                }
 
-                });
+
             }
             else
             {

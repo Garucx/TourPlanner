@@ -23,7 +23,6 @@ namespace TourPlanner.View
         public ModifyWPF()
         {
             InitializeComponent();
-            DataContext = new ModifyWindowModel();
         }
     }
 }

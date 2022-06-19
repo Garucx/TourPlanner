@@ -17,11 +17,12 @@ namespace TourPlanner.ViewModel
 {
     internal class AddTourLogViewModel : INotifyPropertyChanged
     {
-
-        public AddTourLogViewModel()
+        public Tour SelectedTour;
+        public AddTourLogViewModel(Tour item)
         {
             add = new AddTourLogCommand(this);
             Cancel = new AddTourLogCancelCommand(this);
+            SelectedTour = item;
         }
         #region button
 
@@ -31,49 +32,35 @@ namespace TourPlanner.ViewModel
         public async Task CanAddAsync()
         {
             database connection = new database();
-            if (!string.IsNullOrEmpty(name))
+
+            if (string.IsNullOrEmpty(diff) || string.IsNullOrEmpty(comment) || string.IsNullOrEmpty(total_time) || string.IsNullOrEmpty(rating))
             {
-                int id  = connection.Get_ID_From_Tour(name);
-                if(id == 0)
-                {
-                    error = "Tour doesnt exist with this name";
-                    Log.LogError("Tour doesnt exist with this name");
-                    return;
-                }
-
-                if(string.IsNullOrEmpty(diff) ||  string.IsNullOrEmpty(comment) || string.IsNullOrEmpty(total_time) || string.IsNullOrEmpty(rating))
-                {
-                    error = "Please fillout every Box";
-                    Log.LogError(error);
-                    return;
-                }
-                int Rating = 0;
-                int Diff = 0;
-                int Time = 0;
-
-                try
-                {
-                    Rating = int.Parse(rating);
-                    Diff = int.Parse(diff);
-                    Time = int.Parse(total_time);
-                }catch(Exception e)
-                {
-                    Log.LogError(e.Message);
-                    error = e.Message;
-                    return;
-                }
-
-                connection.Create_Tour_Log(new TourLog(id, selecteddate, comment, Diff, Rating, Time));
-                error = "Create Tour Log For " + name;
-                Log.LogInfo(error);
-
+                error = "Please fillout every Box";
+                Log.LogError(error);
+                return;
             }
-            else
+            int Rating = 0;
+            int Diff = 0;
+            int Time = 0;
+
+            try
             {
-                error = "Please enter a name";
-                Log.LogError("Please enter a name");
+                Rating = int.Parse(rating);
+                Diff = int.Parse(diff);
+                Time = int.Parse(total_time);
             }
-
+            catch (Exception e)
+            {
+                Log.LogError(e.Message);
+                error = e.Message;
+                return;
+            }
+            TourLog temp = new TourLog(SelectedTour.ID, selecteddate, comment, Diff, Rating, Time);
+            connection.Create_Tour_Log(temp);
+            SelectedTour.TourLogs.Add(temp);
+            error = "Create Tour Log For " + SelectedTour.Name;
+            Log.LogInfo(error);
+            connection.CloseConnection();
 
         }
 
@@ -85,7 +72,7 @@ namespace TourPlanner.ViewModel
         {
             foreach (Window item in Application.Current.Windows)
             {
-                if(item.DataContext == this)
+                if (item.DataContext == this)
                 {
                     item.Close();
                 }
@@ -96,8 +83,6 @@ namespace TourPlanner.ViewModel
         #endregion  
 
         #region strings
-        public string name { get => _name; set => SetField(ref _name, value); }
-        private string _name = "";
 
         private DateTime _date = DateTime.Now;
         public DateTime selecteddate { get => _date; set => SetField(ref _date, value); }

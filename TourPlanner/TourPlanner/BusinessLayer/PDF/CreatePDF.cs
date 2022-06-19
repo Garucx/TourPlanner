@@ -1,4 +1,5 @@
 ﻿using iText.IO.Font.Constants;
+using iText.IO.Image;
 using iText.Kernel.Colors;
 using iText.Kernel.Font;
 using iText.Kernel.Pdf;
@@ -25,8 +26,11 @@ namespace TourPlanner.BusinessLayer.PDF
             this.path = path;
             title = "default";
         }
+        public CreatePDF()
+        {
 
-        public async Task CreateTourPDF(string title, int tour_id, bool pfad_mit_pdf_namen_angegeben)
+        }
+        public async Task CreateTourPDF(string title, Tour mytour, bool pfad_mit_pdf_namen_angegeben)
         {
             this.title = title;
             this.tour_id = tour_id;
@@ -35,11 +39,12 @@ namespace TourPlanner.BusinessLayer.PDF
 
             if (!pfad_mit_pdf_namen_angegeben)
             {
+                path = "./"+ title + ".pdf";
+            }
+            else
+            {
                 path = path + title + ".pdf";
             }
-
-            database database = new database();
-            Tour mytour = await database.GetTourAsync(tour_id);
 
             PdfWriter writer = new PdfWriter(path);
             PdfDocument pdf = new PdfDocument(writer);
@@ -87,9 +92,13 @@ namespace TourPlanner.BusinessLayer.PDF
               .SetFontSize(12);
             document.Add(Time);
 
-            /*
-             * Bild dafür bracuhe ich die API NEMANJAAAA
-             * */
+            Paragraph image = new Paragraph($"Image of "+ mytour.Name)
+              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+              .SetFontSize(12);
+            document.Add(image);
+
+            ImageData imageData = ImageDataFactory.Create($"../../../PresentationLayer/tour_images/{mytour.ID}.png");
+            document.Add(new Image(imageData));
             document.Close();
         }
 
