@@ -19,12 +19,11 @@ namespace TourPlanner.ViewModel
     {
         public ModifyWindowModel()
         {
-            search = new ModifySearchCommand(this);
             Modifynow = new ModifyTourCommand(this);
         }
 
         private Tour ModifingTour;
-
+        internal int Id { get; set; }
         #region strings
         public string name { get => _name; set => SetField(ref _name, value); }
         private string _name = "";
@@ -63,43 +62,54 @@ namespace TourPlanner.ViewModel
         #region modifybutton
         public ICommand Modifynow { get; set; }
 
-        public bool Canmodify { get; set; } = false;
+        public bool Canmodify { get; set; } = true;
 
         public async Task ModifynowAsync()
         {
-            if (ModifingTour == null)
+            Log.LogInfo("Searching after Tour: " + name);
+            database connection = new database();
+            try
             {
-                Log.LogError("Not possible to Modify a tour that doen't exist");
-                find = "Didn't select Tour";
-                Canmodify = false;
-            }
-            else
-            {
-                Log.LogInfo($"Tour mit name: {ModifingTour.Name} wird geupdatet");
+                Id = connection.Get_ID_From_Tour(name);
+                if (Id == 0) Log.LogError($"Tour with name: {name} doesn't exist");
+                else
+                {
+                    ModifingTour = await connection.GetTourAsync(Id);
+                    if (ModifingTour != null)
+                    {
+                        Log.LogInfo($"Tour mit name: {ModifingTour.Name} wird geupdatet");
 
-                var test = await MapQuestRequestHandler.GetRouteAsync(new MapQuestRequestData(start_code, start_add, start_city, start_country), new MapQuestRequestData(dest_code, dest_add, dest_city, dest_country));
-                database connection = new database();
-                int id = connection.Get_ID_From_Tour(ModifingTour.Name);
-                ModifingTour.Distance = test.route.route.distance;
-                ModifingTour.Time = test.route.route.time;
-                ModifingTour.Tour_desc = $"From {start_add} {start_code} {start_city} to {dest_add} {dest_code} {dest_city}";
-                ModifingTour.Transport_type = test.route.route.options.routeType;
-                ModifingTour.From = start_add;
-                ModifingTour.To = dest_add;
-                ModifingTour.Name = $"{start_add}TO{dest_add}";
-                connection.Modify_Tour(id,ModifingTour);
-                Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
-                find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
+                        var test = await MapQuestRequestHandler.GetRouteAsync(new MapQuestRequestData(start_code, start_add, start_city, start_country), new MapQuestRequestData(dest_code, dest_add, dest_city, dest_country));
+                        ModifingTour.Distance = test.route.route.distance;
+                        ModifingTour.Time = test.route.route.time;
+                        ModifingTour.Tour_desc = $"From {start_add} {start_code} {start_city} to {dest_add} {dest_code} {dest_city}";
+                        ModifingTour.Transport_type = test.route.route.options.routeType;
+                        ModifingTour.From = start_add;
+                        ModifingTour.To = dest_add;
+                        ModifingTour.Name = $"{start_add}TO{dest_add}";
+                        connection.Modify_Tour(Id, ModifingTour);
+                        Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
+                        find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
+                        ModifingTour = null;
+
+
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+            finally
+            {
                 connection.CloseConnection();
-                ModifingTour = null;
             }
 
         }
 
         #endregion
         #region searchbutton
-        public ICommand search { get; set; }
-        public bool CanSearch { get; internal set; } = true;
 
         public async Task SearchTour()
         {
@@ -108,11 +118,11 @@ namespace TourPlanner.ViewModel
             database connection = new database();
             try
             {
-                int id = connection.Get_ID_From_Tour(name);
-                if (id == 0) Log.LogError($"Tour with name: {name} doesn't exist");
+                Id = connection.Get_ID_From_Tour(name);
+                if (Id == 0) Log.LogError($"Tour with name: {name} doesn't exist");
                 else
                 {
-                    ModifingTour = await connection.GetTourAsync(id);
+                    ModifingTour = await connection.GetTourAsync(Id);
                     if (ModifingTour != null)
                     {
                         find = $"Tour with name: {name} exists. You can Modify it now";

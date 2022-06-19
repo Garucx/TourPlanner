@@ -6,55 +6,56 @@
         xmlns:local="clr-namespace:TourPlanner.View"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="ModifyWPF" Height="450" Width="800">
+        Title="ModifyWPF" Height="300" Width="750">
     <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>    
-        
-        </Grid.RowDefinitions>
-        
-        
-        <Label Content = "Please enter the Name of the Tour you want to modify: " HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment = "Left"  TextWrapping="Wrap" Grid.Row="1" Text="{Binding name}"  Grid.Column="2" VerticalAlignment="Top" Width="120"/>
-        <Button Content = "Selected for Modifying" Command="{Binding search}" Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            </Grid.RowDefinitions>
 
-        <Label Content="Start" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Destination" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="3" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Address" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top"/>
-        <Label Content="Area Code" Grid.Row="6" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top"/>
-        <Label Content="City" Grid.Row="7" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top"/>
-        <Label Content="Country" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top"/>
-        <Label Content="Address" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
-        <Label Content="Area Code" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
-        <Label Content="City" Grid.Row="7" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
-        <Label Content="Country" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding start_add}" Grid.Row="5" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding start_code}" Grid.Row="6" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding start_city}" Grid.Row="7" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding start_country}" Grid.Row="8" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding dest_add}" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding dest_Code}" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding dest_city}" Grid.Row="7" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox Text="{Binding dest_country}" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Command="{Binding Modifynow}"  Content="Modfify" HorizontalAlignment="Left" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="430" />
-        <Label Content = "{Binding find}" HorizontalAlignment="Left" Grid.ColumnSpan="4" Grid.Row="2" Grid.Column="1 " VerticalAlignment="Top"/>
-        <Label Content = "Tour Exits : " HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
+
+            <Label Content = "Tour Name " HorizontalAlignment="Left"  Grid.Row="2" Grid.Column="0" VerticalAlignment="Top"/>
+            <TextBox HorizontalAlignment = "Left"  TextWrapping="Wrap" Grid.Row="2" Text="{Binding name}"  Grid.Column="1" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Start" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Destination" Grid.Row="4" HorizontalAlignment="Left"  Grid.Column="3" VerticalAlignment="Top" FontWeight="Bold"/>
+            <Label Content="Address" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="Area Code" Grid.Row="6" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="City" Grid.Row="7" HorizontalAlignment="Left"  Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="Country" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="Address" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
+            <Label Content="Area Code" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
+            <Label Content="City" Grid.Row="7" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
+            <Label Content="Country" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="3" VerticalAlignment="Top"/>
+            <TextBox Text="{Binding start_add}" Grid.Row="5" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding start_code}" Grid.Row="6" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding start_city}" Grid.Row="7" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding start_country}" Grid.Row="8" Grid.Column="1 " HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding dest_add}" Grid.Row="5" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding dest_Code}" Grid.Row="6" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding dest_city}" Grid.Row="7" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <TextBox Text="{Binding dest_country}" Grid.Row="8" HorizontalAlignment="Left" Grid.Column="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button Command="{Binding Modifynow}"  Content="Modfify" HorizontalAlignment="Left" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top" Width="430" />
+            <Label Content = "{Binding find}" HorizontalAlignment="Left" Grid.ColumnSpan="4" Grid.Row="3" Grid.Column="1 " VerticalAlignment="Center"/>
+            <Label Content = "Tour Exits : " HorizontalAlignment="Left"  Grid.Row="3" Grid.Column="0" VerticalAlignment="Top"/>
+            <Label Content="Modify Tours" Grid.Column="0"  Grid.Row="0" Grid.RowSpan="2" HorizontalAlignment="Center" Grid.ColumnSpan="5" VerticalAlignment="Center" FontWeight="Bold" FontSize="24"/>
+        </Grid>
+        
     </Grid>
 </Window>

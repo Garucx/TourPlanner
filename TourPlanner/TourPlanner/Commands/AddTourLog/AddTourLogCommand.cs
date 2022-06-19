@@ -8,10 +8,10 @@ using TourPlanner.ViewModel;
 
 namespace TourPlanner.Commands
 {
-    internal class ModifySearchCommand : ICommand
+    internal class AddTourLogCommand : ICommand
     {
-        private ModifyWindowModel _viewModel;
-        public ModifySearchCommand(ModifyWindowModel viewModel)
+        private AddTourLogViewModel _viewModel;
+        public AddTourLogCommand(AddTourLogViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -24,12 +24,12 @@ namespace TourPlanner.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return _viewModel.CanSearch;
+            return _viewModel.CanDo;
         }
 
         public void Execute(object? parameter)
         {
-            _viewModel.SearchTour();
+            _viewModel.CanAddAsync();
         }
 
     }

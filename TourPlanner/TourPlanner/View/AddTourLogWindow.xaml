@@ -4,41 +4,84 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TourPlanner.View"
+        WindowStartupLocation="CenterScreen"
         mc:Ignorable="d"
         Title="AddTourLogWindow" Height="300" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+          
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="87*"></RowDefinition>
-            <RowDefinition Height="38*"></RowDefinition>
-            <RowDefinition Height="44*"></RowDefinition>
-            <RowDefinition Height="43*"></RowDefinition>
-            <RowDefinition Height="55*"></RowDefinition>
-            <RowDefinition Height="168*"></RowDefinition>
+            <RowDefinition Height="6*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="38*"></ColumnDefinition>
-            <ColumnDefinition Width="44*"></ColumnDefinition>
-            <ColumnDefinition Width="51*"></ColumnDefinition>
-            <ColumnDefinition Width="38*"></ColumnDefinition>
-            <ColumnDefinition Width="44*"></ColumnDefinition>
-            <ColumnDefinition Width="52*"></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Label Content="Name of Tour you want to Add a Tour Log" HorizontalAlignment="Left" Grid.ColumnSpan="2" Grid.Column="0" VerticalAlignment="Center" Height="26" Width="232"/>
-        <TextBox HorizontalAlignment="Center" Grid.Column="2" TextWrapping="Wrap" Text="{Binding name}" VerticalAlignment="Center" Width="120" Height="18"/>
-        <Label Content="Creating Log" HorizontalAlignment="Left" FontWeight="Bold" Grid.Column="0" VerticalAlignment="Center" Height="26" Width="82" Grid.Row="1"/>
-        <Label Content="Date/Time" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="65"/>
-        <Label Content="Comemnt" HorizontalAlignment="Left" Grid.Column="0" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="62"/>
-        <Label Content="Diffilulty" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="54"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" Text="{Binding diff}" VerticalAlignment="Center" Width="120" Height="18"/>
-        <TextBox Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" TextWrapping="Wrap" Text="{Binding comment}" VerticalAlignment="Center" Width="120" Height="18"/>
-        <Label Grid.Column="3" Content="Total Time" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="36"/>
-        <Label Grid.Column="3" Content="Rating" HorizontalAlignment="Left"  Grid.Row="3" VerticalAlignment="Center" Height="26" Width="44"/>
-        <TextBox Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Text="{Binding total_time}" VerticalAlignment="Center" Width="120" Height="18"/>
-        <TextBox Grid.Column="4" HorizontalAlignment="Center"  Grid.Row="3" TextWrapping="Wrap" Text="{Binding rating}" VerticalAlignment="Center" Width="120" Height="18"/>
-        <Button Grid.Column="3" Command="{Binding add}" Grid.ColumnSpan="2" Content="ADD" HorizontalAlignment="Center" MinWidth="240"  Grid.Row="4" VerticalAlignment="Center" Height="20" Width="240"/>
-        <Label Content="{Binding error}" HorizontalAlignment="Left" Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="5" VerticalAlignment="Center"/>
-        <DatePicker SelectedDate="{Binding selecteddate}" Grid.Column="1" HorizontalAlignment="Center"  Grid.Row="2" VerticalAlignment="Top"/>
+        <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
+            </Grid.RowDefinitions>
 
+            <Label Grid.Row="1" Grid.Column="0" Content="Tour Name" Margin="5,5,0,2.5"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding name}" Margin="0,5,5,2.5"></TextBox>
+
+            <!--<TextBlock Padding="5,0,0,0"><Run FontSize="8">From</Run><LineBreak/><Run>Address</Run></TextBlock>-->
+            <Label Grid.Row="2" Grid.Column="0" Margin="5,5,0,2.5" Content="Date"></Label>
+            <DatePicker SelectedDate="{Binding selecteddate}" Grid.Row="2" Grid.Column="1" Text="{Binding selecteddate}" Margin="0,5,5,2.5"></DatePicker>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,5,0,2.5" Content="Difficulty"></Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding diff}" Margin="0,5,5,2.5"></TextBox>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="5,5,0,2.5" Content="Total Time"></Label>
+            <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding total_time}" Margin="0,5,5,2.5"></TextBox>
+
+        </Grid>
+        <Grid Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="2*"></RowDefinition>
+                <RowDefinition Height="0.5*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,5,0,2.5" Content="Comment"></Label>
+            <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding comment}" Margin="0,5,5,2.5"></TextBox>
+
+            <Label Grid.Row="3" Grid.Column="0" Margin="5,5,0,2.5" Content="Rating"></Label>
+            <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding rating}" Margin="0,5,5,2.5"></TextBox>
+
+            <Label Grid.Row="4" Grid.Column="0" Margin="5,5,0,2.5" Content="Message"></Label>
+            <Label Grid.Row="4" Grid.Column="1" Margin="5,5,0,2.5" Content="{Binding error}"></Label>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,0,5,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="Close" Command="{Binding Cancel}" Margin="0,0,5,0"></Button>
+            <Button Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="3" Content="Create" Command="{Binding add}"  Margin="5,0,0,0" ></Button>
+        </Grid>
     </Grid>
 </Window>

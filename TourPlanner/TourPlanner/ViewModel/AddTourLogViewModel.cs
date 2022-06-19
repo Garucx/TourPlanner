@@ -5,8 +5,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using TourPlanner.Commands;
+using TourPlanner.Commands.AddTourLog;
 using TourPlanner.Model;
 
 namespace TourPlanner.ViewModel
@@ -17,11 +19,12 @@ namespace TourPlanner.ViewModel
         public AddTourLogViewModel()
         {
             add = new AddTourLogCommand(this);
+            Cancel = new AddTourLogCancelCommand(this);
         }
         #region button
 
         public ICommand add { get; set; }
-        public bool CanAdd { get; set; } = true;
+        public bool CanDo { get; set; } = true;
 
         public async Task CanAddAsync()
         {
@@ -73,7 +76,22 @@ namespace TourPlanner.ViewModel
         }
 
         #endregion
+        #region Cancel
+        public ICommand Cancel { get; set; }
 
+        public async Task CancelAsync()
+        {
+            foreach (Window item in Application.Current.Windows)
+            {
+                if(item.DataContext == this)
+                {
+                    item.Close();
+                }
+            }
+        }
+
+
+        #endregion  
 
         #region strings
         public string name { get => _name; set => SetField(ref _name, value); }

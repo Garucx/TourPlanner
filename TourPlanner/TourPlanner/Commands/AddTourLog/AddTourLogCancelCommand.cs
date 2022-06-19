@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using TourPlanner.ViewModel;
 
-namespace TourPlanner.Commands
+namespace TourPlanner.Commands.AddTourLog
 {
-    internal class AddTourLogCommand : ICommand
+
+    internal class AddTourLogCancelCommand : ICommand
     {
+
         private AddTourLogViewModel _viewModel;
-        public AddTourLogCommand(AddTourLogViewModel viewModel)
+        public AddTourLogCancelCommand(AddTourLogViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -24,13 +26,12 @@ namespace TourPlanner.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return _viewModel.CanAdd;
+            return _viewModel.CanDo;
         }
 
         public void Execute(object? parameter)
         {
-            _viewModel.CanAddAsync();
+            _viewModel.CancelAsync();
         }
-
     }
 }
