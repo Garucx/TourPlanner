@@ -16,8 +16,8 @@ namespace TourPlanner.ViewModel
 {
     internal class TourViewModel
     {
-        
-        public  TourViewModel()
+
+        public TourViewModel()
         {
             // TODO: Get Saved Tours if they exist and initialize _Tour
             database connection = new database();
@@ -27,10 +27,10 @@ namespace TourPlanner.ViewModel
             // Test data
             AddNewTour = new AddNewTourCommand(this);
             Exit = new ExitApplicationCommand(this);
-            DeleteWindow = new DeleteWindowCommand(this);
             ModifyWindow = new ModifyWindowCommand(this);
             RefreshWindow = new RefreshCommand(this);
             addtourlog = new AddTourLogWindowCommand(this);
+            DeleteWindow= new DeleteTourCommand(this);
             Tour = new ObservableCollection<Tour>();
             foreach (var item in _Tour)
             {
@@ -59,6 +59,8 @@ namespace TourPlanner.ViewModel
             Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
             database connection = new database();
             connection.Create_new_Tour(tour);
+            int id = connection.Get_ID_From_Tour(tour.Name);
+            tour.ID = id;
             Tour.Add(tour);
             _Tour.Add(tour);
             connection.CloseConnection();
@@ -101,62 +103,67 @@ namespace TourPlanner.ViewModel
 
         internal async Task OpenDeleteWindow()
         {
-            DeleteWPF viewModel = new DeleteWPF();
-           viewModel.ShowDialog();
-        }
-        #endregion
-        #region Refresh
-        public ICommand RefreshWindow { get; set; }
-        public bool CanRefresh { get; set; } = true;
-        
-        public async Task Refresh()
-        {
+            Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
             database connection = new database();
-            _Tour = connection.GetAll();
-            Tour.Clear();
-            foreach (var item in _Tour)
-            {
-                Tour.Add(item);
-            }    
-            connection.CloseConnection();
+            connection.Delete_Tour(SelectedTour.ID);
+            Tour.Remove(SelectedTour);
+           
         }
 
+    
+    #endregion
+    #region Refresh
+    public ICommand RefreshWindow { get; set; }
+    public bool CanRefresh { get; set; } = true;
 
-        #endregion
-        #region Add Tour Log
-        public ICommand addtourlog { get; set; }
-        public bool CanCreateTourLog { get; set; } = true;
-
-        public async Task CreateTourLog()
+    public async Task Refresh()
+    {
+        database connection = new database();
+        _Tour = connection.GetAll();
+        Tour.Clear();
+        foreach (var item in _Tour)
         {
-            Log.LogInfo("Opening Window for Add Tour Logs");
-            AddTourLogWindow window = new AddTourLogWindow();
-            window.ShowDialog();
-
+            Tour.Add(item);
         }
-        #endregion
+        connection.CloseConnection();
+    }
 
 
-        #region IDK
-        IDialogService _dialogService = new DialogService();
+    #endregion
+    #region Add Tour Log
+    public ICommand addtourlog { get; set; }
+    public bool CanCreateTourLog { get; set; } = true;
 
-        private List<Tour> _Tour = new List<Tour>();
+    public async Task CreateTourLog()
+    {
+        Log.LogInfo("Opening Window for Add Tour Logs");
+        AddTourLogWindow window = new AddTourLogWindow();
+        window.ShowDialog();
 
-        
+    }
+    #endregion
 
-        public Tour SelectedTour
-        {
-            get;
-            set;
-        }
 
-        public ObservableCollection<Tour> Tour { get; private set; }
-         /*
-        public IEnumerable<Tour> Tour
-        {
-            get { return _Tour; }
-        }
-            */
-        #endregion
-        }
+    #region IDK
+    IDialogService _dialogService = new DialogService();
+
+    private List<Tour> _Tour = new List<Tour>();
+
+
+
+    public Tour SelectedTour
+    {
+        get;
+        set;
+    }
+
+    public ObservableCollection<Tour> Tour { get; private set; }
+    /*
+   public IEnumerable<Tour> Tour
+   {
+       get { return _Tour; }
+   }
+       */
+    #endregion
+}
     }

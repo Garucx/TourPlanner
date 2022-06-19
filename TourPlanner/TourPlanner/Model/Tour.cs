@@ -30,7 +30,7 @@ namespace TourPlanner.Model
             Route_information = route_information;
             Image_link = image_link;
         }
-         public Tour(string name, string tour_desc, string from, string to, string transport_type, float distance, int time,string image_link)
+         public Tour(int id,string name, string tour_desc, string from, string to, string transport_type, float distance, int time,string image_link)
         {
             Name = name;
             Tour_desc = tour_desc;
@@ -40,6 +40,7 @@ namespace TourPlanner.Model
             Distance = distance;
             Time = time;
             Image_link = image_link;
+            ID = id;
         }
         public string Name { get =>_Name; set => SetField(ref _Name, value); }
         private string _Name;
@@ -61,6 +62,7 @@ namespace TourPlanner.Model
         public string Image_link { get => _Image_link; set => SetField(ref _Image_link, value); }
         private string _Image_link;
 
+        public int ID { get; set; }
 
 
         #region Property Changed

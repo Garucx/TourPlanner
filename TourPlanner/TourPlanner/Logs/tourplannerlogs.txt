@@ -106,3 +106,96 @@
 2022-06-19 12:08:21,394 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
 2022-06-19 12:08:21,394 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
 2022-06-19 12:08:21,397 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:11:15,429 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:11:15,594 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:11:15,657 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:11:15,657 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:11:42,964 [1] INFO TourPlanner.Model.Log - Shutsown
+2022-06-19 12:12:21,291 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:12:21,452 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:12:21,508 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:12:21,508 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:13:46,842 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:13:47,000 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:13:47,055 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:13:47,055 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:14:01,031 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:14:01,032 [1] INFO TourPlanner.Model.Log - Getting ID From Tour
+2022-06-19 12:14:01,039 [1] INFO TourPlanner.Model.Log - Deleting Tour with Id: 22
+2022-06-19 12:14:01,049 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:14:04,076 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:14:04,076 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:14:04,080 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:16:37,950 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:16:38,164 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:16:38,228 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:16:38,228 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:16:40,201 [1] INFO TourPlanner.Model.Log - Opening Modify Window
+2022-06-19 12:16:47,839 [1] INFO TourPlanner.Model.Log - Neue Tour erstellt Name: JurekgasseTOArnsteingasse
+2022-06-19 12:16:47,839 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:16:47,840 [1] INFO TourPlanner.Model.Log - Creating new Tour: JurekgasseTOArnsteingasse
+2022-06-19 12:16:47,852 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:16:48,298 [1] INFO TourPlanner.Model.Log - Opening Window for Add Tour Logs
+2022-06-19 12:17:16,903 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:17:16,903 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:17:16,907 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:21:10,745 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:21:10,986 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:21:11,046 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:21:11,047 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:22:01,544 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:22:01,794 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:22:01,855 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:22:01,856 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:22:09,422 [1] INFO TourPlanner.Model.Log - Ottakringer Straße 45TOPraterstern
+2022-06-19 12:26:48,964 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:26:49,122 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:26:49,177 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:26:49,177 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:26:51,920 [1] INFO TourPlanner.Model.Log - Deleting Log with ID 0
+2022-06-19 12:26:51,920 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:26:51,921 [1] INFO TourPlanner.Model.Log - Deleting Tour with Id: 0
+2022-06-19 12:26:55,934 [1] INFO TourPlanner.Model.Log - Deleting Log with ID 0
+2022-06-19 12:26:55,934 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:26:55,952 [1] INFO TourPlanner.Model.Log - Deleting Tour with Id: 0
+2022-06-19 12:26:58,199 [1] INFO TourPlanner.Model.Log - Opening Modify Window
+2022-06-19 12:27:03,784 [1] INFO TourPlanner.Model.Log - Opening Window for Add Tour Logs
+2022-06-19 12:27:11,942 [1] INFO TourPlanner.Model.Log - Opening Modify Window
+2022-06-19 12:29:49,099 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:29:49,258 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:29:49,312 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:29:49,312 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:29:52,783 [1] INFO TourPlanner.Model.Log - Deleting Log with ID 0
+2022-06-19 12:29:52,783 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:29:52,784 [1] INFO TourPlanner.Model.Log - Deleting Tour with Id: 0
+2022-06-19 12:30:22,980 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:30:24,361 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:30:24,417 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:30:24,417 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:30:37,135 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:30:38,617 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:32:11,047 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:32:36,336 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:32:36,488 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:32:36,542 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:32:36,543 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:33:03,766 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:33:03,923 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:33:03,980 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:33:03,981 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:33:32,376 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:34:04,890 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:35:38,399 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:35:42,704 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:35:51,790 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:35:51,791 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:36:04,336 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:36:04,337 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:36:04,342 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:38:31,615 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:38:33,952 [1] INFO TourPlanner.Model.Log - Requesting every log in the Database
+2022-06-19 12:38:34,007 [1] INFO TourPlanner.Model.Log - Refreshing the GUI
+2022-06-19 12:38:34,007 [1] INFO TourPlanner.Model.Log - Database Connection schließt
+2022-06-19 12:38:37,004 [1] INFO TourPlanner.Model.Log - Deleting Log with ID 20
+2022-06-19 12:38:37,004 [1] INFO TourPlanner.Model.Log - Opening up new Database Connection
+2022-06-19 12:38:37,005 [1] INFO TourPlanner.Model.Log - Deleting Tour with Id: 20

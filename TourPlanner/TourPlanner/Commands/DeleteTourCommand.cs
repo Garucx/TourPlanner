@@ -10,8 +10,8 @@ namespace TourPlanner.Commands
 {
     internal class DeleteTourCommand : ICommand
     {
-        private DeleteWindowModel _viewModel;
-        public DeleteTourCommand(DeleteWindowModel viewModel)
+        private TourViewModel _viewModel;
+        public DeleteTourCommand(TourViewModel viewModel)
         {
             _viewModel = viewModel;
         }
@@ -24,12 +24,14 @@ namespace TourPlanner.Commands
 
         public bool CanExecute(object? parameter)
         {
-            return _viewModel.löschen;
+            return _viewModel.CanOpenDeleteWindow;
         }
 
         public void Execute(object? parameter)
         {
-            _viewModel.DelteTour();
+            _viewModel.OpenDeleteWindow();
         }
+
+
     }
 }

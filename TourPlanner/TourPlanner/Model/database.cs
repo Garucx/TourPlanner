@@ -259,7 +259,7 @@ namespace TourPlanner.Model
                 {
                     if (dataReader[0] != null)
                     {
-                        alltours.Add(new Tour((string)dataReader[1], (string)dataReader[2], (string)dataReader[3], (string)dataReader[8], (string)dataReader[4], Convert.ToSingle((decimal)dataReader[5]), (int)dataReader[6], (string)dataReader[7]));
+                        alltours.Add(new Tour((int)dataReader[0],(string)dataReader[1], (string)dataReader[2], (string)dataReader[3], (string)dataReader[8], (string)dataReader[4], Convert.ToSingle((decimal)dataReader[5]), (int)dataReader[6], (string)dataReader[7]));
                     }
                 }
             }

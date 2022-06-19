@@ -13,9 +13,6 @@
     <Compile Update="View\AddTourLogWindow.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="View\DeleteWPF.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="View\ModifyWPF.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,9 +25,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\AddTourLogWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="View\DeleteWPF.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="View\MainWindow.xaml">
