@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -63,6 +64,7 @@ namespace TourPlanner.ViewModel
             tour.ID = id;
             Tour.Add(tour);
             _Tour.Add(tour);
+            route.image.Save("..\\..\\..\\tour_images\\"+tour.ID.ToString()+".png", ImageFormat.Png);
             connection.CloseConnection();
         }
         public bool CanAdd { get; internal set; } = true;
