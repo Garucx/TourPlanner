@@ -58,12 +58,6 @@ E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-win
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlanner.pdb
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlanner.genruntimeconfig.cache
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\ref\TourPlanner.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\System.Data.SqlClient.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win-arm64\native\sni.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win-x64\native\sni.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win-x86\native\sni.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
-E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\obj\Debug\net5.0-windows\TourPlanner.csproj.CopyComplete
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\Npgsql.dll
 E:\FH\Sem_4\Github\Swen\TourPlanner\TourPlanner\TourPlanner\bin\Debug\net5.0-windows\System.Runtime.CompilerServices.Unsafe.dll

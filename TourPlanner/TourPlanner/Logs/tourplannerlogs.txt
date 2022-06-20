@@ -114,3 +114,29 @@
 2022-06-20 23:03:40,500 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Deleting Log with ID 41
 2022-06-20 23:03:40,500 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
 2022-06-20 23:03:40,501 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Deleting Tour with Id: 41
+2022-06-20 23:05:19,127 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:05:19,345 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 23:05:19,405 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Refreshing the GUI
+2022-06-20 23:05:19,406 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-20 23:08:40,080 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:08:40,279 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 23:08:40,328 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Refreshing the GUI
+2022-06-20 23:08:40,329 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-20 23:08:50,803 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Neue Tour erstellt Name: JurekgasseTOArnsteingasse
+2022-06-20 23:08:50,803 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:08:50,804 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Creating new Tour: JurekgasseTOArnsteingasse
+2022-06-20 23:08:50,816 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Getting ID From Tour
+2022-06-20 23:08:50,829 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-20 23:08:54,921 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening Window for Add Tour Logs
+2022-06-20 23:09:00,830 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:09:00,835 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Creating new TourLog
+2022-06-20 23:10:06,316 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:10:06,534 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 23:10:06,627 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Refreshing the GUI
+2022-06-20 23:10:06,630 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Getting Tour with ID: 42
+2022-06-20 23:10:06,640 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-20 23:10:09,770 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening Window for Add Tour Logs
+2022-06-20 23:10:13,610 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 23:10:13,621 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Creating new TourLog
+2022-06-20 23:10:13,621 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Create Tour Log For JurekgasseTOArnsteingasse
+2022-06-20 23:10:13,621 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt

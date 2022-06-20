@@ -56,6 +56,10 @@ namespace TourPlanner.PresentationLayer.ViewModel
             }
             TourLog temp = new TourLog(SelectedTour.ID, selecteddate, comment, Diff, Rating, Time);
             connection.Create_Tour_Log(temp);
+            if(SelectedTour.TourLogs.Count == 0)
+            {
+                SelectedTour.TourLogs = new List<TourLog>();
+            }
             SelectedTour.TourLogs.Add(temp);
             error = "Create Tour Log For " + SelectedTour.Name;
             Log.LogInfo(error);
