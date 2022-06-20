@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TourPlanner.BusinessLayer.MapQuest
 {
-    internal class MapQuestRequestData
+    public class MapQuestRequestData
     {
         public string AreaCode { get; set; }
         public string Address { get; set; }

@@ -16,8 +16,6 @@ namespace TourPlanner.DataLayer
 {
     public class database
     {
-        string myConnectionString = "Host=localhost;Username=postgres;Password=postgres;Database=tour";
-        public NpgsqlConnection connection;
         string myConnectionString;
         private NpgsqlConnection connection;
         private NpgsqlCommand command;
@@ -26,6 +24,7 @@ namespace TourPlanner.DataLayer
         {
             try
             {
+                myConnectionString = ConfigurationManager.ConnectionStrings["test"].ConnectionString.ToString();
                 Log.LogInfo("Opening up new Database Connection");
                 connection = new NpgsqlConnection(myConnectionString);
                 connection.Open();
@@ -38,29 +37,6 @@ namespace TourPlanner.DataLayer
             }
         }
 
-        public database(string connstring)
-        {
-            try
-            {
-                Log.LogInfo("Opening up new Database Connection");
-                connection = new NpgsqlConnection(connstring);
-                connection.Open();
-                command = new NpgsqlCommand();
-                command.Connection = connection;
-            }
-            catch (Exception ex)
-            {
-                Log.LogError(ex.Message);
-            }
-
-
-            myConnectionString = ConfigurationManager.ConnectionStrings["test"].ConnectionString.ToString();
-            Log.LogInfo("Opening up new Database Connection");
-            connection = new NpgsqlConnection(myConnectionString);
-            connection.Open();
-            command = new NpgsqlCommand();
-            command.Connection = connection;
-        }
         public database(string Connectionstring)
         {
             myConnectionString = Connectionstring;

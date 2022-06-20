@@ -16,7 +16,7 @@ using TourPlanner.View;
 
 namespace TourPlanner.BusinessLayer.MapQuest
 {
-    internal class MapQuestRequestHandler
+    public class MapQuestRequestHandler
     {
 
         /*
@@ -34,16 +34,17 @@ namespace TourPlanner.BusinessLayer.MapQuest
                 var json = await res.Content.ReadAsStringAsync();
                 var imgres = GetRouteImageAsync(start, dest).Result;
                 return (JsonConvert.DeserializeObject<Rootobject>(json), imgres.img, imgres.URL);
-            }catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show("Could not create a new tour. Please check your input and your internet connection");
-                return (null, null,"");
+                return (null, null, "");
             }
 
         }
 
-        public static async Task<(BitmapImage? img,string URL)> GetRouteImageAsync(MapQuestRequestData start, MapQuestRequestData dest)
+        public static async Task<(BitmapImage? img, string URL)> GetRouteImageAsync(MapQuestRequestData start, MapQuestRequestData dest)
         {
             try
             {
@@ -56,14 +57,14 @@ namespace TourPlanner.BusinessLayer.MapQuest
                 stream.Close();
                 client.Dispose();
 
-                return (ToBitmapImage(bitmap),URL);
+                return (ToBitmapImage(bitmap), URL);
 
             }
             catch (Exception ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show(ex.Message);
-                return (null,"");
+                return (null, "");
             }
         }
 

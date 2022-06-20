@@ -23,23 +23,21 @@ namespace TourPlannerTest
         [Test]
         public void CheckDBConnection()
         {
-            if (db.connection != null && db.connection.State == ConnectionState.Open)
+            if (db.GetStatus() == ConnectionState.Open)
                 Assert.Pass();
         }
 
         [Test]
         public void CheckDBClosedConnection()
         {
-
             db.CloseConnection();
-            if (db.connection.State == ConnectionState.Closed)
+            if (db.GetStatus() == ConnectionState.Closed)
                 Assert.Pass();
         }
         [Test]
         public void CheckDBGetAll()
         {
-            db = new database("Host=localhost;Username=postgres;Password=postgres;Database=tour");
-            if (db.connection != null && db.connection.State == ConnectionState.Open)
+            if (db.GetStatus() == ConnectionState.Open)
             {
                 allTours = db.GetAll();
                 Assert.That(allTours.Count, Is.GreaterThanOrEqualTo(1));
