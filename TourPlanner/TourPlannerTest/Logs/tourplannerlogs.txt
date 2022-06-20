@@ -1,0 +1,26 @@
+2022-06-20 22:49:09,438 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:49:09,549 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:50:30,571 [14] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:50:38,461 [14] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:52:35,595 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:52:35,704 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:54:00,863 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:54:00,973 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:55:22,439 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:55:22,550 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:55:40,379 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:55:40,492 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:56:46,767 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-20 22:56:47,165 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-20 22:56:47,212 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 22:56:47,213 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - Connection is not open
+2022-06-20 22:56:47,216 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Creating new Tour: unit
+2022-06-20 22:56:47,217 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - Connection mit der Datenbank ist geschlossen
+2022-06-20 22:56:47,217 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - Connection mit der Datenbank ist geschlossen
+2022-06-20 22:56:47,217 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 22:56:47,217 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - Connection is not open
+2022-06-20 22:56:47,217 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-20 22:56:47,217 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - Connection is not open
+2022-06-20 22:56:52,646 [NonParallelWorker] ERROR TourPlanner.BusinessLayer.Logging.Log - This_is_a_error
+2022-06-20 22:56:52,650 [NonParallelWorker] FATAL TourPlanner.BusinessLayer.Logging.Log - This_is_a_fatal
+2022-06-20 22:56:52,652 [NonParallelWorker] INFO TourPlanner.BusinessLayer.Logging.Log - This_is_a_Info

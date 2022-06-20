@@ -14,6 +14,8 @@ using System.Drawing;
 using TourPlanner.DataLayer.Model;
 using TourPlanner.BusinessLayer.PDF;
 using System.Threading.Tasks;
+using TourPlanner.BusinessLayer.Logging;
+using log4net;
 
 namespace TourPlannerTest
 {
@@ -22,9 +24,15 @@ namespace TourPlannerTest
 
         static database db = new database("Host=localhost;Username=postgres;Password=postgres;Database=tour");
         static List<Tour> allTours = new List<Tour>();
+
+        static Tests()
+        {
+            
+        }
         [Test]
         public void CheckDBConnection()
         {
+            
             if (db.GetStatus() == ConnectionState.Open)
                 Assert.Pass();
         }
@@ -78,36 +86,36 @@ namespace TourPlannerTest
         [Test]
         public void CheckSaveImage()
         {
-            BitmapImage image = new BitmapImage(new System.Uri(@"C:\Users\Nemanja\Pictures\Flamaramara.png"));
-            SaveBitmapImage.SaveImage(image, "test", @"C:\Users\Nemanja\Pictures\");
-            if (File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+            BitmapImage image = new BitmapImage(new System.Uri("..\\..\\..\\Testfolder\\Flamaramara.png", UriKind.Relative));
+            SaveBitmapImage.SaveImage(image, "test", "..\\..\\..\\Testfolder\\");
+            if (File.Exists("..\\..\\..\\Testfolder\\test.png"))
                 Assert.Pass();
         }
 
         [Test]
         public void CheckLoadImage()
         {
-            BitmapImage image = new BitmapImage(new Uri(@"C:\testfolder\Flamaramara.png"));
-            BitmapImage methodimage = LoadBitmapImage.LoadImage("Flamaramara", @"C:\testfolder\");
+            BitmapImage image = new BitmapImage(new System.Uri("..\\..\\..\\Testfolder\\Flamaramara.png", UriKind.Relative));
+            BitmapImage methodimage = LoadBitmapImage.LoadImage("Flamaramara", "..\\..\\..\\Testfolder\\");
             Assert.That(methodimage.UriSource, Is.EqualTo(image.UriSource));
         }
         [Test]
         public void CheckDeleteImage()
         {
-            if (!File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+            if (!File.Exists("..\\..\\..\\Testfolder\\test.png"))
             {
-                BitmapImage image = LoadBitmapImage.LoadImage("Flamaramara", @"C:\Users\Nemanja\Pictures\");
-                SaveBitmapImage.SaveImage(image, "test", @"C:\Users\Nemanja\Pictures\");
+                BitmapImage image = LoadBitmapImage.LoadImage("Flamaramara", "..\\..\\..\\Testfolder\\");
+                SaveBitmapImage.SaveImage(image, "test", "..\\..\\..\\Testfolder\\");
             }
-            SaveBitmapImage.DeleteImage("test", @"C:\Users\Nemanja\Pictures\");
-            if (!File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+            SaveBitmapImage.DeleteImage("test", "..\\..\\..\\Testfolder\\");
+            if (!File.Exists("..\\..\\..\\Testfolder\\test.png"))
                 Assert.Pass();
         }
         [Test]
         public void CheckDeleteImage2()
         {
             // File existiert nicht
-            SaveBitmapImage.DeleteImage("nofile", @"C:\Users\Nemanja\Pictures\");
+            SaveBitmapImage.DeleteImage("nofile", @"..\\..\\..\\Testfolder\\");
             // Program stürzt nicht ab => pass
             Assert.Pass();
         }
@@ -133,22 +141,22 @@ namespace TourPlannerTest
         public void CheckJsonExport()
         {
             var jsontour = new Tour("jsonexport", "jsonexport", "jsonexport", "jsonexport", "jsonexport", 0f, 0, null, "jsonexport");
-            Jsonall.Save(jsontour, @"C:\testfolder\");
-            if (File.Exists(@"C:\testfolder\jsonexport.json"))
+            Jsonall.Save(jsontour, "..\\..\\..\\Testfolder\\");
+            if (File.Exists("..\\..\\..\\Testfolder\\jsonexport.json"))
                 Assert.Pass();
         }
         [Test]
         public void CheckJsonImport()
         {
-            var jsonimport = Jsonall.Open(@"C:\testfolder\jsonexport.json").Result;
+            var jsonimport = Jsonall.Open("..\\..\\..\\Testfolder\\jsonexport.json").Result;
             Assert.That(jsonimport.Name == "jsonexport");
         }
 
         [Test]
         public void CheckBitmapToBitmapImageConverter()
         {
-            Bitmap bitmap = new Bitmap(@"C:\testfolder\Flamaramara.png");
-            BitmapImage bitmapImage = new BitmapImage(new Uri(@"C:\testfolder\Flamaramara.png"));
+            Bitmap bitmap = new Bitmap("..\\..\\..\\Testfolder\\Flamaramara.png");
+            BitmapImage bitmapImage = new BitmapImage(new Uri("..\\..\\..\\Testfolder\\Flamaramara.png",UriKind.Relative));
 
             var converted = MapQuestRequestHandler.ToBitmapImage(bitmap);
             Assert.That(converted.BaseUri == bitmapImage.BaseUri);
@@ -188,5 +196,41 @@ namespace TourPlannerTest
             Task.Delay(200).Wait();
             Assert.IsTrue(File.Exists($"./Summarize.pdf"));
         }
+
+        [Test]
+        public void TestLogError()
+        {
+            string error = "This_is_a_error";
+            Log.LogError(error);
+            var temp = File.ReadAllLines("..\\..\\..\\Logs\\tourplannerlogs.txt");
+            string[] lines = temp.LastOrDefault().Split(' ');
+            Assert.AreEqual(error,lines.LastOrDefault().Trim());
+            Assert.AreEqual("ERROR", lines[3]);
+
+        }
+        [Test]
+        public void TestLogInfo()
+        {
+            string error = "This_is_a_Info";
+            Log.LogInfo(error);
+            var temp = File.ReadAllLines("..\\..\\..\\Logs\\tourplannerlogs.txt");
+            string[] lines = temp.LastOrDefault().Split(' ');
+            Assert.AreEqual(error, lines.LastOrDefault().Trim());
+            Assert.AreEqual("INFO", lines[3]);
+
+        }
+        [Test]
+        public void TestLogfatal()
+        {
+            string error = "This_is_a_fatal";
+            Log.LogFatal(error);
+            var temp = File.ReadAllLines("..\\..\\..\\Logs\\tourplannerlogs.txt");
+            string[] lines = temp.LastOrDefault().Split(' ');
+            Assert.AreEqual(error, lines.LastOrDefault().Trim());
+            Assert.AreEqual("FATAL", lines[3]);
+
+        }
+
     }
+
 }

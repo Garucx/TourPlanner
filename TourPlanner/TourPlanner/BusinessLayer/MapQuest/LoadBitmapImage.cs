@@ -30,7 +30,7 @@ namespace TourPlanner.BusinessLayer.MapQuest
             {
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
-                image.UriSource = new Uri(path + id + ".png", UriKind.Absolute);
+                image.UriSource = new Uri(path + id + ".png", UriKind.Relative);
                 image.DecodePixelWidth = 200;
                 image.EndInit();
             }

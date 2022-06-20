@@ -17,4 +17,8 @@
     <ProjectReference Include="..\TourPlanner\TourPlanner.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Testfolder\" />
+  </ItemGroup>
+
 </Project>
