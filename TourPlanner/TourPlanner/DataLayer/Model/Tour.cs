@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -57,6 +58,8 @@ namespace TourPlanner.DataLayer.Model
         private float _Distance;
         public int Time { get => _Time; set => SetField(ref _Time, value); }
         private int _Time;
+
+        [JsonIgnore]
         public BitmapImage Route_information { get => _Route_information; set => SetField(ref _Route_information, value); }
         private BitmapImage _Route_information;
 

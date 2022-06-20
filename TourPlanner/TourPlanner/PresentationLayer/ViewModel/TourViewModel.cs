@@ -133,7 +133,7 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 tour.Time = route.route.route.time;
                 tour.Tour_desc = $"From {res.start.Address} {res.start.AreaCode} {res.start.City} to {res.dest.Address} {res.dest.AreaCode} {res.dest.City}";
                 tour.Transport_type = route.route.route.options.routeType;
-                tour.From = res.start.Address;
+                tour.From = $"{res.start.Address}";
                 tour.To = res.dest.Address;
                 tour.Image_link = route.URL;
                 tour.Name = $"{res.start.Address}TO{res.dest.Address}";
@@ -232,10 +232,7 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
                 database connection = new database();
                 connection.Delete_Tour(SelectedTour.ID);
-                if (File.Exists($"../tour_images/{SelectedTour.ID}.png"))
-                {
-                    File.Delete($"../tour_images/{SelectedTour.ID}.png");
-                }
+                SaveBitmapImage.DeleteImage(SelectedTour.ID.ToString(), $"..\\..\\..\\PresentationLayer\\tour_images\\");
                 _Tour.Remove(SelectedTour);
             }
             catch (AggregateException ex)
@@ -496,7 +493,10 @@ namespace TourPlanner.PresentationLayer.ViewModel
                     {
                         throw new ArgumentException("Das ausgewählte Dokument kann nicht Seraliziert werden");
                     }
-
+                    if (tour.Route_information == null)
+                    {
+                        tour.Route_information = LoadBitmapImage.LoadImage(tour.ID.ToString(), $"../../../PresentationLayer/tour_images/");
+                    }
                     AllTours.Add(tour);
                     _Tour.Add(tour);
                     database connection = new database();

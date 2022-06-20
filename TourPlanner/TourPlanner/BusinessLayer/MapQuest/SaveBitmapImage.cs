@@ -28,7 +28,7 @@ namespace TourPlanner.BusinessLayer.MapQuest
             BitmapEncoder encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
 
-            using (var fileStream = new System.IO.FileStream(path+name, System.IO.FileMode.Create))
+            using (var fileStream = new System.IO.FileStream(path + name, System.IO.FileMode.Create))
             {
                 encoder.Save(fileStream);
             }
@@ -42,10 +42,11 @@ namespace TourPlanner.BusinessLayer.MapQuest
         {
             try
             {
-                if (File.Exists(path + id))
-                    File.Delete(path + id);
+                if (File.Exists(path + id + ".png"))
+                    File.Delete(path + id + ".png");
 
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Log.LogError(ex.Message);
             }

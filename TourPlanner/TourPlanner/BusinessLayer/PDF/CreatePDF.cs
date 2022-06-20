@@ -159,31 +159,33 @@ namespace TourPlanner.BusinessLayer.PDF
                     .SetFontColor(ColorConstants.BLACK);
             document.Add(Title);
 
-
             foreach (var item in tours)
             {
-                if (item.TourLogs.Count > 0)
+                if (item.TourLogs != null)
                 {
-                    Paragraph Tour_name = new Paragraph($"Tour Name: {item.Name}")
-                   .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                   .SetFontSize(18);
-                    document.Add(Tour_name);
+                    if (item.TourLogs.Count > 0)
+                    {
+                        Paragraph Tour_name = new Paragraph($"Tour Name: {item.Name}")
+                       .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                       .SetFontSize(18);
+                        document.Add(Tour_name);
 
-                    Paragraph total_time = new Paragraph($"Average Total Time: {item.TourLogs.Average(x => x.total_time)}")
-                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                  .SetFontSize(12);
-                    document.Add(total_time);
+                        Paragraph total_time = new Paragraph($"Average Total Time: {item.TourLogs.Average(x => x.total_time)}")
+                      .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                      .SetFontSize(12);
+                        document.Add(total_time);
 
-                    Paragraph distance = new Paragraph($"Distance: {item.Distance}")
-                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                  .SetFontSize(12);
-                    document.Add(distance);
+                        Paragraph distance = new Paragraph($"Distance: {item.Distance}")
+                      .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                      .SetFontSize(12);
+                        document.Add(distance);
 
 
-                    Paragraph Rating = new Paragraph($"Average Rating: {item.TourLogs.Average(x => x.rating)}")
-                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                  .SetFontSize(12);
-                    document.Add(Rating);
+                        Paragraph Rating = new Paragraph($"Average Rating: {item.TourLogs.Average(x => x.rating)}")
+                      .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                      .SetFontSize(12);
+                        document.Add(Rating);
+                    }
                 }
             }
             document.Close();

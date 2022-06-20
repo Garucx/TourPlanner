@@ -86,6 +86,8 @@ namespace TourPlanner.PresentationLayer.ViewModel
                     ModifingTour.From = start_add;
                     ModifingTour.To = dest_add;
                     ModifingTour.Name = $"{start_add}TO{dest_add}";
+                    ModifingTour.Route_information = test.image;
+                    SaveBitmapImage.SaveImage(ModifingTour.Route_information, "..\\..\\..\\PresentationLayer\\tour_images\\" + ModifingTour.ID.ToString() + ".png");
                     connection.Modify_Tour(ModifingTour.ID, ModifingTour);
                     Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
                     find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;

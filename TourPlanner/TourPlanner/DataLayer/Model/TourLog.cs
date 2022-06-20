@@ -16,6 +16,10 @@ namespace TourPlanner.DataLayer.Model
         public int rating { get; set; }
         public int total_time { get; set; }
         public int tourLogId { get; set; }
+        public TourLog()
+        {
+
+        }
 
         public TourLog(int idfromtour, DateTime date_time, string Comment, int difficulty, int rating, int total_time)
         {
