@@ -56,7 +56,9 @@ namespace TourPlanner.PresentationLayer.ViewModel
             }
             TourLog temp = new TourLog(SelectedTour.ID, selecteddate, comment, Diff, Rating, Time);
             connection.Create_Tour_Log(temp);
-            if(SelectedTour.TourLogs.Count == 0)
+            var List = await connection.GetTourLogsAsync(SelectedTour.ID);
+            temp.tourLogId = List.Last().tourLogId;
+            if(SelectedTour.TourLogs == null)
             {
                 SelectedTour.TourLogs = new List<TourLog>();
             }
