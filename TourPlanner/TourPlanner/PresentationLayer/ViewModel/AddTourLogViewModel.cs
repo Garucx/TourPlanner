@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TourPlanner.BusinessLayer.Logging;
-using TourPlanner.Commands;
-using TourPlanner.Commands.AddTourLog;
 using TourPlanner.DataLayer;
-using TourPlanner.Model;
+using TourPlanner.DataLayer.Model;
+using TourPlanner.PresentationLayer.Commands.AddTourLog;
 
-namespace TourPlanner.ViewModel
+namespace TourPlanner.PresentationLayer.ViewModel
 {
     internal class AddTourLogViewModel : INotifyPropertyChanged
     {

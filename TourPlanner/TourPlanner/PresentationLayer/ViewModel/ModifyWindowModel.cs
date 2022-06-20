@@ -11,12 +11,11 @@ using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using TourPlanner.BusinessLayer.Logging;
 using TourPlanner.BusinessLayer.MapQuest;
-using TourPlanner.Commands;
 using TourPlanner.DataLayer;
-using TourPlanner.Model;
+using TourPlanner.DataLayer.Model;
+using TourPlanner.PresentationLayer.Commands.ModifyTour;
 
-
-namespace TourPlanner.ViewModel
+namespace TourPlanner.PresentationLayer.ViewModel
 {
     internal class ModifyWindowModel : INotifyPropertyChanged
     {
@@ -70,7 +69,7 @@ namespace TourPlanner.ViewModel
             database connection = new database();
             try
             {
-                if(string.IsNullOrEmpty(start_code)|| string.IsNullOrEmpty(start_add)|| string.IsNullOrEmpty(start_city)|| string.IsNullOrWhiteSpace(start_country) ||string.IsNullOrEmpty(dest_code) || string.IsNullOrEmpty(dest_add) || string.IsNullOrEmpty(dest_city) || string.IsNullOrWhiteSpace(dest_country))
+                if (string.IsNullOrEmpty(start_code) || string.IsNullOrEmpty(start_add) || string.IsNullOrEmpty(start_city) || string.IsNullOrWhiteSpace(start_country) || string.IsNullOrEmpty(dest_code) || string.IsNullOrEmpty(dest_add) || string.IsNullOrEmpty(dest_city) || string.IsNullOrWhiteSpace(dest_country))
                 {
                     Log.LogError("User hat nicht alle Boxen ausgefüllt");
                     find = "Please enter something in every textbox";
@@ -91,7 +90,7 @@ namespace TourPlanner.ViewModel
                     Log.LogInfo("Tour Heißt ab jetzt " + ModifingTour.Name);
                     find = "Tour got updateted the new Name of the Tour is " + ModifingTour.Name;
                 }
-                
+
             }
             catch (Exception ex)
             {

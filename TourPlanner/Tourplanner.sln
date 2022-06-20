@@ -5,7 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TourPlanner", "TourPlanner\TourPlanner.csproj", "{3E6433FA-717B-4876-9524-A17C2FE79D29}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject2", "TestProject2\TestProject2.csproj", "{283FD3A2-BDEF-4026-AAD9-1DB8628AB6DE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TourPlannerTest", "TourPlannerTest\TourPlannerTest.csproj", "{09D08E8D-8575-4F09-BE03-20606F8FAE8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3E6433FA-717B-4876-9524-A17C2FE79D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E6433FA-717B-4876-9524-A17C2FE79D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E6433FA-717B-4876-9524-A17C2FE79D29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{283FD3A2-BDEF-4026-AAD9-1DB8628AB6DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{283FD3A2-BDEF-4026-AAD9-1DB8628AB6DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{283FD3A2-BDEF-4026-AAD9-1DB8628AB6DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{283FD3A2-BDEF-4026-AAD9-1DB8628AB6DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09D08E8D-8575-4F09-BE03-20606F8FAE8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09D08E8D-8575-4F09-BE03-20606F8FAE8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09D08E8D-8575-4F09-BE03-20606F8FAE8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09D08E8D-8575-4F09-BE03-20606F8FAE8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

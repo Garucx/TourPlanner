@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TourPlanner.ViewModel;
+using TourPlanner.PresentationLayer.ViewModel;
 
-namespace TourPlanner.Commands
+namespace TourPlanner.PresentationLayer.Commands
 {
-    internal class RefreshCommand:ICommand
+    internal class RefreshCommand : ICommand
     {
         private TourViewModel _viewModel;
         public RefreshCommand(TourViewModel viewModel)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -9,25 +10,38 @@ using System.Threading;
 using System.Threading.Tasks;
 using TourPlanner.BusinessLayer.Logging;
 using TourPlanner.BusinessLayer.MapQuest;
-using TourPlanner.Model;
+using TourPlanner.DataLayer.Model;
 
 namespace TourPlanner.DataLayer
 {
-    internal class database
+    public class database
     {
-        string myConnectionString = ConfigurationManager.ConnectionStrings["test"].ConnectionString.ToString();
+        string myConnectionString;
         private NpgsqlConnection connection;
         private NpgsqlCommand command;
         object protection = new object();
         public database()
         {
+            myConnectionString = ConfigurationManager.ConnectionStrings["test"].ConnectionString.ToString();
             Log.LogInfo("Opening up new Database Connection");
             connection = new NpgsqlConnection(myConnectionString);
             connection.Open();
             command = new NpgsqlCommand();
             command.Connection = connection;
         }
-
+        public database(string Connectionstring)
+        {
+            myConnectionString = Connectionstring;
+            Log.LogInfo("Opening up new Database Connection");
+            connection = new NpgsqlConnection(myConnectionString);
+            connection.Open();
+            command = new NpgsqlCommand();
+            command.Connection = connection;
+        }
+        public ConnectionState GetStatus()
+        {
+            return connection.State;
+        }
         public void Modify_Tour(int id, Tour tour)
         {
             Log.LogInfo("Modifying Tour " + tour.Name);

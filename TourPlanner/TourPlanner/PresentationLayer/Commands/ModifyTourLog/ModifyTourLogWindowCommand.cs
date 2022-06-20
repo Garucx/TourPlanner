@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using TourPlanner.ViewModel;
+using TourPlanner.PresentationLayer.ViewModel;
 
 namespace TourPlanner.PresentationLayer.Commands.ModifyTourLog
 {

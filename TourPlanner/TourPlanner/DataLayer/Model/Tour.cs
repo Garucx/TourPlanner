@@ -7,18 +7,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 
-namespace TourPlanner.Model
+namespace TourPlanner.DataLayer.Model
 {
-    internal class Tour : INotifyPropertyChanged
+    public class Tour : INotifyPropertyChanged
     {
-        
+
         public Tour()
         {
 
         }
 
 
-        public Tour(string name, string tour_desc, string from, string to, string transport_type, float distance, int time, BitmapImage route_information,string image_link)
+        public Tour(string name, string tour_desc, string from, string to, string transport_type, float distance, int time, BitmapImage route_information, string image_link)
         {
             Name = name;
             Tour_desc = tour_desc;
@@ -30,7 +30,7 @@ namespace TourPlanner.Model
             Route_information = route_information;
             Image_link = image_link;
         }
-         public Tour(int id,string name, string tour_desc, string from, string to, string transport_type, float distance, int time,string image_link, BitmapImage route_information)
+        public Tour(int id, string name, string tour_desc, string from, string to, string transport_type, float distance, int time, string image_link, BitmapImage route_information)
         {
             Route_information = route_information;
             Name = name;
@@ -43,7 +43,7 @@ namespace TourPlanner.Model
             Image_link = image_link;
             ID = id;
         }
-        public string Name { get =>_Name; set => SetField(ref _Name, value); }
+        public string Name { get => _Name; set => SetField(ref _Name, value); }
         private string _Name;
         public string Tour_desc { get => _Tour_desc; set => SetField(ref _Tour_desc, value); }
         private string _Tour_desc;

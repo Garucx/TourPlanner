@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,17 +16,18 @@ using TourPlanner.BusinessLayer.JSON;
 using TourPlanner.BusinessLayer.Logging;
 using TourPlanner.BusinessLayer.MapQuest;
 using TourPlanner.BusinessLayer.PDF;
-using TourPlanner.Commands;
 using TourPlanner.DataLayer;
-using TourPlanner.Model;
+using TourPlanner.DataLayer.Model;
 using TourPlanner.PresentationLayer.Commands;
+using TourPlanner.PresentationLayer.Commands.AddTourLog;
+using TourPlanner.PresentationLayer.Commands.CreateTour;
+using TourPlanner.PresentationLayer.Commands.ModifyTour;
 using TourPlanner.PresentationLayer.Commands.ModifyTourLog;
 using TourPlanner.PresentationLayer.DialogServices;
 using TourPlanner.PresentationLayer.View;
-using TourPlanner.PresentationLayer.ViewModel;
 using TourPlanner.View;
 
-namespace TourPlanner.ViewModel
+namespace TourPlanner.PresentationLayer.ViewModel
 {
     internal class TourViewModel
     {
@@ -230,6 +232,10 @@ namespace TourPlanner.ViewModel
                 Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
                 database connection = new database();
                 connection.Delete_Tour(SelectedTour.ID);
+                if (File.Exists($"../tour_images/{SelectedTour.ID}.png"))
+                {
+                    File.Delete($"../tour_images/{SelectedTour.ID}.png");
+                }
                 _Tour.Remove(SelectedTour);
             }
             catch (AggregateException ex)

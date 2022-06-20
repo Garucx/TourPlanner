@@ -13,7 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TourPlanner.ViewModel;
+using TourPlanner.PresentationLayer.ViewModel;
 
 namespace TourPlanner.View
 {

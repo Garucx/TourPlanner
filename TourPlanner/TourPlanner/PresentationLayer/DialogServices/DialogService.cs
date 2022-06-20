@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows;
 using TourPlanner.BusinessLayer.MapQuest;
 using TourPlanner.View;
-using TourPlanner.ViewModel;
 
 namespace TourPlanner.PresentationLayer.DialogServices
 {

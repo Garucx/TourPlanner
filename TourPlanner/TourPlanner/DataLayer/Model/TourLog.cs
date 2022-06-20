@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TourPlanner.Model
+namespace TourPlanner.DataLayer.Model
 {
-    internal class TourLog
+    public class TourLog
     {
         public int idfromtour { get; set; }
         public DateTime date_time { get; set; }
@@ -17,11 +17,11 @@ namespace TourPlanner.Model
         public int total_time { get; set; }
         public int tourLogId { get; set; }
 
-        public TourLog(int idfromtour,DateTime date_time,string Comment,int difficulty,int rating,int total_time)
+        public TourLog(int idfromtour, DateTime date_time, string Comment, int difficulty, int rating, int total_time)
         {
             this.idfromtour = idfromtour;
             this.date_time = date_time;
-            this.Comment = Comment; 
+            this.Comment = Comment;
             this.difficulty = difficulty;
             this.rating = rating;
             this.total_time = total_time;

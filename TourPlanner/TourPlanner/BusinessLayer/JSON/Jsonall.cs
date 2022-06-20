@@ -5,11 +5,11 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TourPlanner.Model;
+using TourPlanner.DataLayer.Model;
 
 namespace TourPlanner.BusinessLayer.JSON
 {
-    internal class Jsonall
+    public class Jsonall
     {
         public Jsonall()
         {
