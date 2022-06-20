@@ -1,90 +1,159 @@
-using Npgsql;
 using NUnit.Framework;
-using System.Configuration;
-using System.Data;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Media.Imaging;
+using TourPlanner;
 using TourPlanner.DataLayer;
-using TourPlanner.DataLayer.Model;
-using System.Linq;
+using TourPlanner.BusinessLayer;
+using TourPlanner.BusinessLayer.MapQuest;
 using System;
+using System.Data;
+using System.Collections.Generic;
+using System.Linq;
+using TourPlanner.BusinessLayer.JSON;
+using System.Drawing;
+using TourPlanner.DataLayer.Model;
 
 namespace TourPlannerTest
 {
     public class Tests
     {
-        static string connectionString = "Host=localhost;Username=postgres;Password=postgres;Database=tour";
-        database connection = new database(connectionString);
-        static Tour tour = new Tour("test", "TesttoTest", "alser straﬂe", "Alser Straﬂe", "fastest", 100, 20, new BitmapImage(), "yes");
-        static int id;
-        static TourLog tourLog;
+
+        static database db = new database("Host=localhost;Username=postgres;Password=postgres;Database=tour");
+        static List<Tour> allTours = new List<Tour>();
+        [Test]
+        public void CheckDBConnection()
+        {
+            if (db.connection != null && db.connection.State == ConnectionState.Open)
+                Assert.Pass();
+        }
 
         [Test]
-        public void Reihenfolge()
+        public void CheckDBClosedConnection()
         {
-            TestDatabaseConnection();
-            TestCreateTour();
-            ModifyTour();
-            CreateTourLog();
-            ModifyTourLog();
-            DeleteTour();
-            CloseDatabase();
-        }
-        public void TestDatabaseConnection()
-        {
-            Assert.AreEqual(ConnectionState.Open, connection.GetStatus());
-        }
-        public async Task TestCreateTour()
-        {
-            connection.Create_new_Tour(tour);
-            id = connection.Get_ID_From_Tour(tour.Name);
-            Tour a = await connection.GetTourAsync(id);
-            Assert.AreEqual(tour.Name, a.Name);
-        }
 
-        public async Task ModifyTour()
-        {
-            tour.ID = id;
-            tour.From = "Jorgerstraﬂe";
-            connection.Modify_Tour(tour.ID, tour);
-            Tour a = await connection.GetTourAsync(tour.ID);
-            Assert.AreEqual(tour.From, a.From);
+            db.CloseConnection();
+            if (db.connection.State == ConnectionState.Closed)
+                Assert.Pass();
         }
-
-        public async Task CreateTourLog()
+        [Test]
+        public void CheckDBGetAll()
         {
-            tourLog = new TourLog(tour.ID, System.DateTime.Now, "Nice", 4, 4, 4);
-            connection.Create_Tour_Log(tourLog);
-            var a = await connection.GetTourLogsAsync(tour.ID);
-            Assert.AreEqual(tourLog.Comment,a.FirstOrDefault().Comment);
-        }
-
-        public async Task ModifyTourLog()
-        {
-            tourLog.rating = 5;
-            connection.Modify_Tour_Log(tourLog);
-            var a = await connection.GetTourLogsAsync(tour.ID);
-            Assert.AreEqual(tourLog.rating,a.FirstOrDefault().rating);
-        }
-
-        public async Task DeleteTour()
-        {
-            try
+            db = new database("Host=localhost;Username=postgres;Password=postgres;Database=tour");
+            if (db.connection != null && db.connection.State == ConnectionState.Open)
             {
-                connection.Delete_Tour(tour.ID);
-                Tour a = await connection.GetTourAsync(tour.ID);
-            }catch(Exception e)
-            {
-                Assert.AreEqual("Der gesuchte Tour exestiert nicht", e.Message);
+                allTours = db.GetAll();
+                Assert.That(allTours.Count, Is.GreaterThanOrEqualTo(1));
             }
-
         }
 
-        public void CloseDatabase()
+        [Test]
+        public void CheckDBInsert()
         {
-            connection.CloseConnection();
-            Assert.AreEqual(ConnectionState.Closed, connection.GetStatus());
+            db.Create_new_Tour(new Tour("unit", "unit", "unit", "unit", "unit", 0.5f, 0, null, "unit"));
+            var newList = db.GetAll();
+            var el = newList.Where(x => x.Name == "unit").FirstOrDefault();
+            Assert.That(el, Is.Not.Null);
+            Assert.That(el.Name == "unit");
+        }
+        [Test]
+        public void CheckDBUpdate()
+        {
+            allTours = db.GetAll();
+            db.Modify_Tour(allTours.Where(x => x.Name == "unit").FirstOrDefault().ID, new Tour("unitupdate", "unitupdate", "unitupdate", "unitupdate", "unitupdate", 0.5f, 0, null, "unitupdate"));
+            allTours = db.GetAll();
+            var item = allTours.Where(x => x.Name == "unitupdate").FirstOrDefault();
+            Assert.That(item.Name == "unitupdate");
         }
 
+        [Test]
+        public void CheckDBDelete()
+        {
+            allTours = db.GetAll();
+            db.Delete_Tour(allTours.Where(x => x.Name == "unitupdate").FirstOrDefault().ID);
+            allTours = db.GetAll();
+            var item = allTours.Where(x => x.Name == "unitupdate").FirstOrDefault();
+            Assert.IsNull(item);
+        }
+
+        [Test]
+        public void CheckSaveImage()
+        {
+            BitmapImage image = new BitmapImage(new System.Uri(@"C:\Users\Nemanja\Pictures\Flamaramara.png"));
+            SaveBitmapImage.SaveImage(image, "test", @"C:\Users\Nemanja\Pictures\");
+            if (File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+                Assert.Pass();
+        }
+
+        [Test]
+        public void CheckLoadImage()
+        {
+            BitmapImage image = new BitmapImage(new System.Uri(@"C:\Users\Nemanja\Pictures\Flamaramara.png"));
+            BitmapImage methodimage = LoadBitmapImage.LoadImage("Flamaramara", @"C:\Users\Nemanja\Pictures\");
+            Assert.That(methodimage.UriSource, Is.EqualTo(image.UriSource));
+        }
+        [Test]
+        public void CheckDeleteImage()
+        {
+            if (!File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+            {
+                BitmapImage image = LoadBitmapImage.LoadImage("Flamaramara", @"C:\Users\Nemanja\Pictures\");
+                SaveBitmapImage.SaveImage(image, "test", @"C:\Users\Nemanja\Pictures\");
+            }
+            SaveBitmapImage.DeleteImage("test", @"C:\Users\Nemanja\Pictures\");
+            if (!File.Exists(@"C:\Users\Nemanja\Pictures\test.png"))
+                Assert.Pass();
+        }
+        [Test]
+        public void CheckDeleteImage2()
+        {
+            // File existiert nicht
+            SaveBitmapImage.DeleteImage("nofile", @"C:\Users\Nemanja\Pictures\");
+            // Program st¸rzt nicht ab => pass
+            Assert.Pass();
+        }
+
+        [Test]
+        public void CheckMapQuestHandler1()
+        {
+
+            string url1 = @"https://www.mapquestapi.com/directions/v2/route?key=mpUdVgf8ptUM5Bum4hKF2yKU30TlOLw4&from=1150 Jurekgasse,Vienna,AT&to=1150 Arnsteingasse, Vienna,AT";
+
+            string url2 = @"https://open.mapquestapi.com/staticmap/v5/map?key=mpUdVgf8ptUM5Bum4hKF2yKU30TlOLw4&start=1150 Jurekgasse,Vienna,AT&end=1150 Arnsteingasse, Vienna, AT";
+            var start = new MapQuestRequestData("1150", "Jurekgasse", "Vienna", "AT");
+            var dest = new MapQuestRequestData("1150", "Arnsteingasse", "Vienna", "AT");
+            var res = MapQuestRequestHandler.GetRouteAsync(start, dest).Result;
+            var res2 = MapQuestRequestHandler.GetRouteAsync(start, dest, url1).Result;
+            Assert.IsNotNull(res);
+            Assert.IsNotNull(res2);
+            Assert.That(res.URL.Replace(" ", ""), Is.EqualTo(url2.Replace(" ", "")));
+            Assert.That(res2.route.route.distance, Is.EqualTo(res.route.route.distance));
+        }
+
+        [Test]
+        public void CheckJsonExport()
+        {
+            var jsontour = new Tour("jsonexport", "jsonexport", "jsonexport", "jsonexport", "jsonexport", 0f, 0, null, "jsonexport");
+            Jsonall.Save(jsontour, @"C:\testfolder\");
+            if (File.Exists(@"C:\testfolder\jsonexport.json"))
+                Assert.Pass();
+        }
+        [Test]
+        public void CheckJsonImport()
+        {
+            var jsonimport = Jsonall.Open(@"C:\testfolder\jsonexport.json").Result;
+            Assert.That(jsonimport.Name == "jsonexport");
+        }
+
+        [Test]
+        public void CheckBitmapToBitmapImageConverter()
+        {
+            Bitmap bitmap = new Bitmap(@"C:\testfolder\Flamaramara.png");
+            BitmapImage bitmapImage = new BitmapImage(new Uri(@"C:\testfolder\Flamaramara.png"));
+
+            var converted = MapQuestRequestHandler.ToBitmapImage(bitmap);
+            Assert.That(converted.BaseUri == bitmapImage.BaseUri);
+            Assert.That(converted.GetType() == typeof(BitmapImage));
+
+        }
     }
 }
