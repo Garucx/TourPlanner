@@ -12,6 +12,8 @@ using System.Linq;
 using TourPlanner.BusinessLayer.JSON;
 using System.Drawing;
 using TourPlanner.DataLayer.Model;
+using TourPlanner.BusinessLayer.PDF;
+using System.Threading.Tasks;
 
 namespace TourPlannerTest
 {
@@ -85,8 +87,8 @@ namespace TourPlannerTest
         [Test]
         public void CheckLoadImage()
         {
-            BitmapImage image = new BitmapImage(new System.Uri(@"C:\Users\Nemanja\Pictures\Flamaramara.png"));
-            BitmapImage methodimage = LoadBitmapImage.LoadImage("Flamaramara", @"C:\Users\Nemanja\Pictures\");
+            BitmapImage image = new BitmapImage(new Uri(@"C:\testfolder\Flamaramara.png"));
+            BitmapImage methodimage = LoadBitmapImage.LoadImage("Flamaramara", @"C:\testfolder\");
             Assert.That(methodimage.UriSource, Is.EqualTo(image.UriSource));
         }
         [Test]
@@ -152,6 +154,39 @@ namespace TourPlannerTest
             Assert.That(converted.BaseUri == bitmapImage.BaseUri);
             Assert.That(converted.GetType() == typeof(BitmapImage));
 
+        }
+
+        [Test]
+        public void CheckPDFCreation()
+        {
+            Tour tour = new Tour("PDFTest", "Description", "Antonigasse", "Blumengasse", "Fastes", 400, 300, new BitmapImage(), "asd");
+            CreatePDF pdfcreator = new CreatePDF("./");
+            pdfcreator.CreateTourPDF(tour.Name, tour, true);
+            Task.Delay(200).Wait();
+            Assert.IsTrue(File.Exists($"./{tour.Name}.pdf"));
+        }
+        [Test]
+        public void CheckPDFTourCreation()
+        {
+            Tour tour = new Tour("PDFTest", "Description", "Antonigasse", "Blumengasse", "Fastes", 400, 300, new BitmapImage(), "asd");
+            CreatePDF pdfcreator = new CreatePDF("./");
+            pdfcreator.CreateTourPDF(tour.Name, tour, true);
+            Task.Delay(200).Wait();
+            Assert.IsTrue(File.Exists($"./{tour.Name}.pdf"));
+        }
+        [Test]
+        public void CheckSummarizeCreation()
+        {
+            Tour tour = new Tour("PDFTest", "Description", "Antonigasse", "Blumengasse", "Fastes", 400, 300, new BitmapImage(), "asd");
+            tour.TourLogs = new List<TourLog>();
+            TourLog log = new TourLog(1, DateTime.Now, "Comment", 4, 4, 4, 5);
+            tour.TourLogs.Add(log);
+            CreatePDF pdfcreator = new CreatePDF("./");
+            List<Tour> tours = new List<Tour>();
+            tours.Add(tour);
+            pdfcreator.CreateSummarize_report(tours);
+            Task.Delay(200).Wait();
+            Assert.IsTrue(File.Exists($"./Summarize.pdf"));
         }
     }
 }

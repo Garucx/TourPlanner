@@ -26,6 +26,17 @@ namespace TourPlanner.BusinessLayer.JSON
                 }
             });
         }
+        public async static Task Save(Tour tour, string path)
+        {
+            await Task.Run(() =>
+            {
+                using (StreamWriter file = File.CreateText(path + tour.Name + ".json"))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(file, tour);
+                }
+            });
+        }
         public async static Task<Tour> Open(string Path)
         {
             Tour tour;

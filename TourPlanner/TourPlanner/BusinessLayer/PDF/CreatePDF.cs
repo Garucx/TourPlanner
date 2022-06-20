@@ -15,7 +15,7 @@ using TourPlanner.DataLayer.Model;
 
 namespace TourPlanner.BusinessLayer.PDF
 {
-    internal class CreatePDF
+    public class CreatePDF
     {
         private int tour_id { get; set; }
         private string path { get; set; }

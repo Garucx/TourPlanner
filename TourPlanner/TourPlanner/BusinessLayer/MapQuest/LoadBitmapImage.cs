@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 
 namespace TourPlanner.BusinessLayer.MapQuest
 {
-    internal class LoadBitmapImage
+    public class LoadBitmapImage
     {
         public static BitmapImage LoadImage(string id)
         {
@@ -18,6 +18,19 @@ namespace TourPlanner.BusinessLayer.MapQuest
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
                 image.UriSource = new Uri("..\\..\\..\\PresentationLayer\\tour_images\\" + id + ".png", UriKind.Relative);
+                image.DecodePixelWidth = 200;
+                image.EndInit();
+            }
+            return image;
+        }
+        public static BitmapImage LoadImage(string id, string path)
+        {
+            BitmapImage image = new BitmapImage();
+            if (File.Exists(path + id + ".png"))
+            {
+                image.BeginInit();
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = new Uri(path + id + ".png", UriKind.Absolute);
                 image.DecodePixelWidth = 200;
                 image.EndInit();
             }

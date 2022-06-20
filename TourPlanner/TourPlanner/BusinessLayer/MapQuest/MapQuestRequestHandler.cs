@@ -44,6 +44,27 @@ namespace TourPlanner.BusinessLayer.MapQuest
 
         }
 
+        public static async Task<(Rootobject? route, BitmapImage? image, string URL)> GetRouteAsync(MapQuestRequestData start, MapQuestRequestData dest, string url)
+        {
+            try
+            {
+
+                using var client = new HttpClient();
+                var res = await client.GetAsync(url);
+
+                var json = await res.Content.ReadAsStringAsync();
+                var imgres = GetRouteImageAsync(start, dest).Result;
+                return (JsonConvert.DeserializeObject<Rootobject>(json), imgres.img, imgres.URL);
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show("Could not create a new tour. Please check your input and your internet connection");
+                return (null, null, "");
+            }
+
+        }
+
         public static async Task<(BitmapImage? img, string URL)> GetRouteImageAsync(MapQuestRequestData start, MapQuestRequestData dest)
         {
             try
@@ -58,6 +79,29 @@ namespace TourPlanner.BusinessLayer.MapQuest
                 client.Dispose();
 
                 return (ToBitmapImage(bitmap), URL);
+
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+                return (null, "");
+            }
+        }
+
+        public static async Task<(BitmapImage? img, string URL)> GetRouteImageAsync(MapQuestRequestData start, MapQuestRequestData dest, string url)
+        {
+            try
+            {
+                WebClient client = new WebClient();
+                Stream stream = client.OpenRead(url);
+                Bitmap bitmap; bitmap = new Bitmap(stream);
+
+                stream.Flush();
+                stream.Close();
+                client.Dispose();
+
+                return (ToBitmapImage(bitmap), url);
 
             }
             catch (Exception ex)
