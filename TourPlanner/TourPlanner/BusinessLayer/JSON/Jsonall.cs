@@ -17,7 +17,7 @@ namespace TourPlanner.BusinessLayer.JSON
         }
         public async static Task Save(Tour tour)
         {
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 using (StreamWriter file = File.CreateText(@"../../../JSONs/" + tour.Name + ".json"))
                 {

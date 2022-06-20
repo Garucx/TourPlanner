@@ -37,21 +37,8 @@ namespace TourPlanner.ViewModel
                 database connection = new database();
                 _Tour = new ObservableCollection<Tour>(connection.GetAll());
                 Log.LogInfo("Refreshing the GUI");
-                // Test data
-                AddNewTour = new AddNewTourCommand(this);
-                Exit = new ExitApplicationCommand(this);
-                ModifyWindow = new ModifyWindowCommand(this);
-                RefreshWindow = new RefreshCommand(this);
-                addtourlog = new AddTourLogWindowCommand(this);
-                DeleteWindow = new DeleteTourCommand(this);
-                AllTours = new ObservableCollection<Tour>();
-                TextSearch = new FullTextSearchCommand(this);
-                CreatePdf = new CreatePDFCommand(this);
-                DeleteTourLog = new DeleteTourLogCommand(this);
-                ModifyTourLog = new ModifyTourLogWindowCommand(this);
-                CreateSumm = new CreateSummPDFCommand(this);
-                JSONout = new SaveJsonCommand(this);
-                JsonIn = new OpenJsonCommand(this);
+                initCommands();
+
                 foreach (var item in Tour.ToList())
                 {
                     item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
@@ -72,6 +59,24 @@ namespace TourPlanner.ViewModel
             }
         }
 
+        private void initCommands()
+        {
+            AddNewTour = new AddNewTourCommand(this);
+            Exit = new ExitApplicationCommand(this);
+            ModifyWindow = new ModifyWindowCommand(this);
+            RefreshWindow = new RefreshCommand(this);
+            addtourlog = new AddTourLogWindowCommand(this);
+            DeleteWindow = new DeleteTourCommand(this);
+            AllTours = new ObservableCollection<Tour>();
+            TextSearch = new FullTextSearchCommand(this);
+            CreatePdf = new CreatePDFCommand(this);
+            DeleteTourLog = new DeleteTourLogCommand(this);
+            ModifyTourLog = new ModifyTourLogWindowCommand(this);
+            CreateSumm = new CreateSummPDFCommand(this);
+            JSONout = new SaveJsonCommand(this);
+            JsonIn = new OpenJsonCommand(this);
+        }
+
         #region textsearch
 
         public ICommand TextSearch { get; private set; }
@@ -81,7 +86,12 @@ namespace TourPlanner.ViewModel
             {
                 await Task.Delay(1);
                 if (string.IsNullOrWhiteSpace(SearchText))
-                    _Tour = AllTours;
+
+                {
+                    _Tour.Clear();
+                    foreach (var item in AllTours)
+                        _Tour.Add(item);
+                }
                 else
                 {
                     _Tour.Clear();
@@ -123,17 +133,17 @@ namespace TourPlanner.ViewModel
                 tour.Transport_type = route.route.route.options.routeType;
                 tour.From = res.start.Address;
                 tour.To = res.dest.Address;
-                tour.Image_link = "asdas00"; // Muss geändert werden
+                tour.Image_link = route.URL;
                 tour.Name = $"{res.start.Address}TO{res.dest.Address}";
+                tour.Route_information = route.image;
                 Log.LogInfo("Neue Tour erstellt Name: " + tour.Name);
                 database connection = new database();
                 connection.Create_new_Tour(tour);
                 int id = connection.Get_ID_From_Tour(tour.Name);
                 tour.ID = id;
-                Tour.Add(tour);
                 _Tour.Add(tour);
                 AllTours.Add(tour);
-                route.image.Save("..\\..\\..\\PresentationLayer\\tour_images\\" + tour.ID.ToString() + ".png", ImageFormat.Png);
+                SaveBitmapImage.SaveImage(tour.Route_information, "..\\..\\..\\PresentationLayer\\tour_images\\" + tour.ID.ToString() + ".png");
                 connection.CloseConnection();
             }
             catch (AggregateException ex)
@@ -451,7 +461,8 @@ namespace TourPlanner.ViewModel
                 }
                 Jsonall.Save(SelectedTour);
 
-            }catch (ArgumentNullException ex)
+            }
+            catch (ArgumentNullException ex)
             {
                 Log.LogError(ex.Message);
                 MessageBox.Show(ex.Message);
@@ -475,7 +486,7 @@ namespace TourPlanner.ViewModel
                         throw new Exception("Wählen sie eine Json datei aus");
                     }
                     Tour tour = await Jsonall.Open(openFileDialog.FileName);
-                    if(tour == null)
+                    if (tour == null)
                     {
                         throw new ArgumentException("Das ausgewählte Dokument kann nicht Seraliziert werden");
                     }
@@ -486,7 +497,8 @@ namespace TourPlanner.ViewModel
                     connection.Create_new_Tour(tour);
                     connection.CloseConnection();
                 }
-            }catch(ArgumentException ar)
+            }
+            catch (ArgumentException ar)
             {
                 Log.LogError(ar.Message);
                 MessageBox.Show(ar.Message);
@@ -499,7 +511,7 @@ namespace TourPlanner.ViewModel
         }
 
         #endregion
-            #region IDK
+        #region IDK
 
         private ObservableCollection<Tour> _Tour = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tour

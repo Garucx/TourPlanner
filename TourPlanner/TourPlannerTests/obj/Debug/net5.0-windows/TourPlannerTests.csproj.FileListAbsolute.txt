@@ -1,0 +1,6 @@
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\bin\Debug\net5.0-windows\CoverletSourceRootsMapping
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\obj\Debug\net5.0-windows\TourPlannerTests.csproj.AssemblyReference.cache
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\obj\Debug\net5.0-windows\TourPlannerTests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\obj\Debug\net5.0-windows\TourPlannerTests.AssemblyInfoInputs.cache
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\obj\Debug\net5.0-windows\TourPlannerTests.AssemblyInfo.cs
+C:\Users\Nemanja\Source\Repos\TourPlanner\TourPlanner\TourPlannerTests\obj\Debug\net5.0-windows\TourPlannerTests.csproj.CoreCompileInputs.cache

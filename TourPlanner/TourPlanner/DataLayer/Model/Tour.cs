@@ -30,8 +30,9 @@ namespace TourPlanner.Model
             Route_information = route_information;
             Image_link = image_link;
         }
-         public Tour(int id,string name, string tour_desc, string from, string to, string transport_type, float distance, int time,string image_link)
+         public Tour(int id,string name, string tour_desc, string from, string to, string transport_type, float distance, int time,string image_link, BitmapImage route_information)
         {
+            Route_information = route_information;
             Name = name;
             Tour_desc = tour_desc;
             To = to;

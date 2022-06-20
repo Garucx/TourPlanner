@@ -38,51 +38,55 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <ScrollViewer Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Visible">
+            <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5">
+                <Grid Width="auto" Height="auto">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="10px"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5">
-            <Grid Width="auto" Height="auto">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"></RowDefinition>
-                    <RowDefinition Height="*"></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="10px"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-
-                <TextBlock Text="Title: " Grid.Column="1" Grid.Row="0"></TextBlock>
-                <TextBlock Text="Tour Description" Grid.Row="0" Grid.Column="3"></TextBlock>
-                <TextBlock Text="To" Grid.Row="0" Grid.Column="5"></TextBlock>
-                <TextBlock Text="From" Grid.Row="0" Grid.Column="7"></TextBlock>
-                <TextBlock Text="Transport Type" Grid.Row="0" Grid.Column="9"></TextBlock>
-                <TextBlock Text="Distance" Grid.Row="0" Grid.Column="11"></TextBlock>
-                <TextBlock Text="Time" Grid.Row="0" Grid.Column="13"></TextBlock>
-                <TextBlock Text="Route Information" Grid.Row="0" Grid.Column="15"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Name}" Grid.Row="1" Grid.Column="1"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Tour_desc}" Grid.Row="1" Grid.Column="3"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.From}" Grid.Row="1" Grid.Column="5"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.To}" Grid.Row="1" Grid.Column="7"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Transport_type}" Grid.Row="1" Grid.Column="9"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Distance}" Grid.Row="1" Grid.Column="11"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Time}" Grid.Row="1" Grid.Column="13"></TextBlock>
-                <TextBlock Text="{Binding SelectedTour.Route_information}" Grid.Row="1" Grid.Column="15"></TextBlock>
-            </Grid>
-        </StackPanel>
+                    <TextBlock Text="Title: " Grid.Column="1" Grid.Row="0"></TextBlock>
+                    <TextBlock Text="Tour Description" Grid.Row="0" Grid.Column="3"></TextBlock>
+                    <TextBlock Text="To" Grid.Row="0" Grid.Column="5"></TextBlock>
+                    <TextBlock Text="From" Grid.Row="0" Grid.Column="7"></TextBlock>
+                    <TextBlock Text="Transport Type" Grid.Row="0" Grid.Column="9"></TextBlock>
+                    <TextBlock Text="Distance" Grid.Row="0" Grid.Column="11"></TextBlock>
+                    <TextBlock Text="Time" Grid.Row="0" Grid.Column="13"></TextBlock>
+                    <TextBlock Text="Route Information" Grid.Row="0" Grid.Column="15"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Name}" Grid.Row="1" Grid.Column="1"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Tour_desc}" Grid.Row="1" Grid.Column="3"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.From}" Grid.Row="1" Grid.Column="5"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.To}" Grid.Row="1" Grid.Column="7"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Transport_type}" Grid.Row="1" Grid.Column="9"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Distance}" Grid.Row="1" Grid.Column="11"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Time}" Grid.Row="1" Grid.Column="13"></TextBlock>
+                    <TextBlock Text="{Binding SelectedTour.Route_information}" Grid.Row="1" Grid.Column="15"></TextBlock>
+                    <Image Source="{Binding SelectedTour.Route_information}" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="8" Height="400" Width="400"></Image>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        
         <DataGrid Name="dg_tourlogs" Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="5"  ItemsSource="{Binding SelectedTour.TourLogs, Mode=OneWay}" SelectedItem="{Binding SelectedTourLog, Mode=TwoWay}">
 
         </DataGrid>

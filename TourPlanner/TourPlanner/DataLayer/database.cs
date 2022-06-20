@@ -5,8 +5,10 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using TourPlanner.BusinessLayer.Logging;
+using TourPlanner.BusinessLayer.MapQuest;
 using TourPlanner.Model;
 
 namespace TourPlanner.DataLayer
@@ -242,6 +244,7 @@ namespace TourPlanner.DataLayer
                 }
             }
             if (tour == null) throw new Exception("Der gesuchte Tour exestiert nicht");
+            tour.Route_information = LoadBitmapImage.LoadImage(tour.ID.ToString());
             return tour;
         }
 
@@ -279,7 +282,10 @@ namespace TourPlanner.DataLayer
                 {
                     if (dataReader[0] != null)
                     {
-                        alltours.Add(new Tour((int)dataReader[0], (string)dataReader[1], (string)dataReader[2], (string)dataReader[3], (string)dataReader[8], (string)dataReader[4], Convert.ToSingle((decimal)dataReader[5]), (int)dataReader[6], (string)dataReader[7]));
+                        int id = (int)dataReader[0];
+                        var img = LoadBitmapImage.LoadImage(id.ToString());
+                        var newTour = new Tour(id, (string)dataReader[1], (string)dataReader[2], (string)dataReader[3], (string)dataReader[8], (string)dataReader[4], Convert.ToSingle((decimal)dataReader[5]), (int)dataReader[6],(string)dataReader[7],img);
+                        alltours.Add(newTour);
                     }
                 }
             }
