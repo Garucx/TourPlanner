@@ -95,8 +95,8 @@
                 <MenuItem Header="_File">
                     <MenuItem Header="_New Tour" Command="{Binding AddNewTour}"/>
                     <MenuItem Header="_New Tour Log" Command="{Binding addtourlog}"></MenuItem>
-                    <MenuItem Header="_Open" />
-                    <MenuItem Header="_Save" />
+                    <MenuItem Header="_Open" Command="{Binding JsonIn}"/>
+                    <MenuItem Header="_Save" Command="{Binding JSONout}" />
                     <Separator />
                     <MenuItem Header="_Exit" Command="{Binding Exit}"/>
                 </MenuItem>
@@ -109,6 +109,7 @@
                 <MenuItem Header="_Options">
                     <MenuItem Header="_Refresh" Command="{Binding RefreshWindow}"></MenuItem>
                     <MenuItem Header="_Create PDF" Command="{Binding CreatePdf}"></MenuItem>
+                    <MenuItem Header="_Create Summarize" Command="{Binding CreateSumm}"></MenuItem>
                 </MenuItem>
                 <MenuItem Header="_Help">
                 </MenuItem>

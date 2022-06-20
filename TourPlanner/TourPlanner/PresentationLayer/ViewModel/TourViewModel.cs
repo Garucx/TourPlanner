@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Win32;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using TourPlanner.BusinessLayer.JSON;
 using TourPlanner.BusinessLayer.Logging;
 using TourPlanner.BusinessLayer.MapQuest;
 using TourPlanner.BusinessLayer.PDF;
@@ -46,6 +49,9 @@ namespace TourPlanner.ViewModel
                 CreatePdf = new CreatePDFCommand(this);
                 DeleteTourLog = new DeleteTourLogCommand(this);
                 ModifyTourLog = new ModifyTourLogWindowCommand(this);
+                CreateSumm = new CreateSummPDFCommand(this);
+                JSONout = new SaveJsonCommand(this);
+                JsonIn = new OpenJsonCommand(this);
                 foreach (var item in Tour.ToList())
                 {
                     item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
@@ -296,7 +302,7 @@ namespace TourPlanner.ViewModel
 
         }
         #endregion
-        #region PDF
+        #region PDF Tour
         public ICommand CreatePdf { get; set; }
 
         public async Task CreatePDF()
@@ -307,7 +313,7 @@ namespace TourPlanner.ViewModel
                 {
                     throw new ArgumentNullException("Please select a Tour to create a PDF");
                 }
-                CreatePDF pdfcreator = new CreatePDF("./");
+                CreatePDF pdfcreator = new CreatePDF("../../../PDFs/");
                 pdfcreator.CreateTourPDF(SelectedTour.Name, SelectedTour, true);
             }
             catch (ArgumentNullException ex)
@@ -328,6 +334,37 @@ namespace TourPlanner.ViewModel
             }
 
         }
+
+        #endregion
+        #region PDF Summ
+        public ICommand CreateSumm { get; set; }
+
+        public async Task CreateSummPDF()
+        {
+            try
+            {
+                CreatePDF pdfcreator = new CreatePDF("../../../PDFs/");
+                pdfcreator.CreateSummarize_report(AllTours.ToList());
+            }
+            catch (ArgumentNullException ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+            catch (AggregateException ex)
+            {
+                foreach (Exception ex2 in ex.Flatten().InnerExceptions)
+                {
+                    Log.LogError(ex2.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+            }
+
+        }
+
 
         #endregion
         #region Delte Tour LOg
@@ -401,7 +438,68 @@ namespace TourPlanner.ViewModel
             }
         }
         #endregion
-        #region IDK
+        #region JSON OUT
+        public ICommand JSONout { get; set; }
+
+        public async Task SaveTour()
+        {
+            try
+            {
+                if (SelectedTour == null)
+                {
+                    throw new InvalidOperationException("Please Seleced a Tour for Saving");
+                }
+                Jsonall.Save(SelectedTour);
+
+            }catch (ArgumentNullException ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        #endregion
+        #region JSON In
+        public ICommand JsonIn { get; set; }
+
+        public async Task ReadJson()
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    if (!openFileDialog.FileName.Contains(".json"))
+                    {
+                        throw new Exception("Wählen sie eine Json datei aus");
+                    }
+                    Tour tour = await Jsonall.Open(openFileDialog.FileName);
+                    if(tour == null)
+                    {
+                        throw new ArgumentException("Das ausgewählte Dokument kann nicht Seraliziert werden");
+                    }
+
+                    AllTours.Add(tour);
+                    _Tour.Add(tour);
+                    database connection = new database();
+                    connection.Create_new_Tour(tour);
+                    connection.CloseConnection();
+                }
+            }catch(ArgumentException ar)
+            {
+                Log.LogError(ar.Message);
+                MessageBox.Show(ar.Message);
+            }
+            catch (Exception ex)
+            {
+                Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        #endregion
+            #region IDK
 
         private ObservableCollection<Tour> _Tour = new ObservableCollection<Tour>();
         public ObservableCollection<Tour> Tour
