@@ -25,11 +25,7 @@ namespace TourPlannerTest
         static database db = new database("Host=localhost;Username=postgres;Password=postgres;Database=tour");
         static List<Tour> allTours = new List<Tour>();
 
-        static Tests()
-        {
-            
-        }
-        [Test]
+       
         public void CheckDBConnection()
         {
             
@@ -37,14 +33,12 @@ namespace TourPlannerTest
                 Assert.Pass();
         }
 
-        [Test]
         public void CheckDBClosedConnection()
         {
             db.CloseConnection();
             if (db.GetStatus() == ConnectionState.Closed)
                 Assert.Pass();
         }
-        [Test]
         public void CheckDBGetAll()
         {
             if (db.GetStatus() == ConnectionState.Open)
@@ -55,6 +49,16 @@ namespace TourPlannerTest
         }
 
         [Test]
+
+        public void CheckDBReihenfolge()
+        {
+            CheckDBConnection();
+            CheckDBInsert();
+            CheckDBGetAll();
+            CheckDBUpdate();
+            CheckDBDelete();
+            CheckDBClosedConnection();
+        }
         public void CheckDBInsert()
         {
             db.Create_new_Tour(new Tour("unit", "unit", "unit", "unit", "unit", 0.5f, 0, null, "unit"));
@@ -63,7 +67,6 @@ namespace TourPlannerTest
             Assert.That(el, Is.Not.Null);
             Assert.That(el.Name == "unit");
         }
-        [Test]
         public void CheckDBUpdate()
         {
             allTours = db.GetAll();
@@ -73,7 +76,6 @@ namespace TourPlannerTest
             Assert.That(item.Name == "unitupdate");
         }
 
-        [Test]
         public void CheckDBDelete()
         {
             allTours = db.GetAll();
@@ -136,8 +138,12 @@ namespace TourPlannerTest
             Assert.That(res.URL.Replace(" ", ""), Is.EqualTo(url2.Replace(" ", "")));
             Assert.That(res2.route.route.distance, Is.EqualTo(res.route.route.distance));
         }
-
         [Test]
+        public void CheckJson()
+        {
+            CheckJsonExport();
+            CheckJsonImport();
+        }
         public void CheckJsonExport()
         {
             var jsontour = new Tour("jsonexport", "jsonexport", "jsonexport", "jsonexport", "jsonexport", 0f, 0, null, "jsonexport");
@@ -145,7 +151,6 @@ namespace TourPlannerTest
             if (File.Exists("..\\..\\..\\Testfolder\\jsonexport.json"))
                 Assert.Pass();
         }
-        [Test]
         public void CheckJsonImport()
         {
             var jsonimport = Jsonall.Open("..\\..\\..\\Testfolder\\jsonexport.json").Result;
