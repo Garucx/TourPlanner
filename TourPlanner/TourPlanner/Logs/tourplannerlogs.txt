@@ -863,3 +863,10 @@
 2022-06-21 09:24:08,951 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
 2022-06-21 09:24:08,952 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
 2022-06-21 09:24:14,168 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Shutdown
+2022-06-21 09:56:50,759 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-21 09:56:50,947 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-21 09:56:51,000 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Refreshing the GUI
+2022-06-21 09:56:51,001 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
+2022-06-21 09:57:03,607 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Opening up new Database Connection
+2022-06-21 09:57:03,607 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Requesting every log in the Database
+2022-06-21 09:57:03,609 [1] INFO TourPlanner.BusinessLayer.Logging.Log - Database Connection schließt
