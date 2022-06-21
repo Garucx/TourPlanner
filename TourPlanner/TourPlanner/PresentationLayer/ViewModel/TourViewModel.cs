@@ -228,6 +228,10 @@ namespace TourPlanner.PresentationLayer.ViewModel
         {
             try
             {
+                if(SelectedTour == null)
+                {
+                    throw new Exception("Bitte Wählen sie eine Tour aus");
+                }
                 await Task.Delay(1);
                 Log.LogInfo("Deleting Log with ID " + SelectedTour.ID);
                 database connection = new database();
@@ -237,6 +241,7 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 _Tour.Remove(SelectedTour);
             }catch(NullReferenceException n)
             {
+                MessageBox.Show(n.Message);
                 Log.LogError(n.Message);
             }
             catch (AggregateException ex)
@@ -249,6 +254,7 @@ namespace TourPlanner.PresentationLayer.ViewModel
             catch (Exception ex)
             {
                 Log.LogError(ex.Message);
+                MessageBox.Show(ex.Message);
             }
 
         }
@@ -266,7 +272,7 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 await Task.Delay(1);
                 database connection = new database();
                 _Tour = new ObservableCollection<Tour>(connection.GetAll());
-                foreach (var item in Tour.ToList())
+                foreach (var item in _Tour.ToList())
                 {
                     item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
                     AllTours.Add(item);

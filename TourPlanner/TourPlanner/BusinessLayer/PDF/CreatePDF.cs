@@ -98,45 +98,47 @@ namespace TourPlanner.BusinessLayer.PDF
 
             ImageData imageData = ImageDataFactory.Create($"../../../PresentationLayer/tour_images/{mytour.ID}.png");
             document.Add(new Image(imageData));
-
-            if (mytour.TourLogs.Count > 0)
+            if (mytour.TourLogs != null)
             {
-                document.Add(new AreaBreak());
-                Paragraph Header_Tour_Los = new Paragraph($"Tour Logs")
-                .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                .SetFontSize(18);
-                document.Add(Header_Tour_Los);
-                foreach (var item in mytour.TourLogs)
+                if (mytour.TourLogs.Count > 0)
                 {
-                    Paragraph Header = new Paragraph($"Tour Log " + mytour.TourLogs.IndexOf(item))
+                    document.Add(new AreaBreak());
+                    Paragraph Header_Tour_Los = new Paragraph($"Tour Logs")
                     .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-                    .SetFontSize(14);
-                    document.Add(Header);
+                    .SetFontSize(18);
+                    document.Add(Header_Tour_Los);
+                    foreach (var item in mytour.TourLogs)
+                    {
+                        Paragraph Header = new Paragraph($"Tour Log " + mytour.TourLogs.IndexOf(item))
+                        .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                        .SetFontSize(14);
+                        document.Add(Header);
 
-                    Paragraph Comment = new Paragraph($"Log Comment: {item.Comment}")
-              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-              .SetFontSize(12);
-                    document.Add(Comment);
+                        Paragraph Comment = new Paragraph($"Log Comment: {item.Comment}")
+                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                  .SetFontSize(12);
+                        document.Add(Comment);
 
-                    Paragraph Rating = new Paragraph($"Log Rating: {item.rating.ToString()}")
-              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-              .SetFontSize(12);
-                    document.Add(Rating);
+                        Paragraph Rating = new Paragraph($"Log Rating: {item.rating.ToString()}")
+                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                  .SetFontSize(12);
+                        document.Add(Rating);
 
-                    Paragraph Diff = new Paragraph($"Log Difficulty: {item.difficulty.ToString()}")
-              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-              .SetFontSize(12);
-                    document.Add(Diff);
+                        Paragraph Diff = new Paragraph($"Log Difficulty: {item.difficulty.ToString()}")
+                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                  .SetFontSize(12);
+                        document.Add(Diff);
 
-                    Paragraph total_time = new Paragraph($"Log Total Time: {item.total_time}")
-              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-              .SetFontSize(12);
-                    document.Add(total_time);
+                        Paragraph total_time = new Paragraph($"Log Total Time: {item.total_time}")
+                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                  .SetFontSize(12);
+                        document.Add(total_time);
 
-                    Paragraph Date = new Paragraph($"Date/Time: {item.date_time.ToString()}")
-              .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
-              .SetFontSize(12);
-                    document.Add(Date);
+                        Paragraph Date = new Paragraph($"Date/Time: {item.date_time.ToString()}")
+                  .SetFont(PdfFontFactory.CreateFont(StandardFonts.TIMES_ROMAN))
+                  .SetFontSize(12);
+                        document.Add(Date);
+                    }
                 }
             }
 
