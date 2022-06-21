@@ -233,7 +233,11 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 database connection = new database();
                 connection.Delete_Tour(SelectedTour.ID);
                 SaveBitmapImage.DeleteImage(SelectedTour.ID.ToString(), $"..\\..\\..\\PresentationLayer\\tour_images\\");
+                AllTours.Remove(SelectedTour);
                 _Tour.Remove(SelectedTour);
+            }catch(NullReferenceException n)
+            {
+                Log.LogError(n.Message);
             }
             catch (AggregateException ex)
             {
@@ -262,6 +266,11 @@ namespace TourPlanner.PresentationLayer.ViewModel
                 await Task.Delay(1);
                 database connection = new database();
                 _Tour = new ObservableCollection<Tour>(connection.GetAll());
+                foreach (var item in Tour.ToList())
+                {
+                    item.TourLogs = connection.GetTourLogsAsync(item.ID).Result;
+                    AllTours.Add(item);
+                }
                 connection.CloseConnection();
             }
             catch (AggregateException ex)
@@ -489,6 +498,10 @@ namespace TourPlanner.PresentationLayer.ViewModel
                         throw new Exception("Wählen sie eine Json datei aus");
                     }
                     Tour tour = await Jsonall.Open(openFileDialog.FileName);
+                    if(AllTours.ToList().Exists(x => x.ID == tour.ID))
+                    {
+                        throw new Exception("Dieser Tour kann nicht erstellt werden, da er bereits exestiert");
+                    }
                     if (tour == null)
                     {
                         throw new ArgumentException("Das ausgewählte Dokument kann nicht Seraliziert werden");
